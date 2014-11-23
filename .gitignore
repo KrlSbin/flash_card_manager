@@ -20,4 +20,4 @@
 *.swo
 
 # Ignore "yml" files
-/config/*.yml
+/config/database.yml
