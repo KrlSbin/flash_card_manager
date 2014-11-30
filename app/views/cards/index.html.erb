@@ -1,16 +1,24 @@
-<div class="container">
   <table class="table">
     <tr>
       <th>Original text</th>
       <th>Translated text</th>
       <th>Review date</th>
+      <th></th>
+      <th></th>
     </tr>
     <% @cards.each do |card| %>
       <tr>
 	<td><%= card.original_text %></td>
 	<td><%= card.translated_text %></td>
-	<td><%= card.review_date.strftime('%d/%m/%Y') %></td>
+	<td>
+	  <% if card.review_date == nil %>
+	    <%= "Not defined" %>
+	  <% else %>
+	    <%= card.review_date.strftime('%d/%m/%Y') %>
+	  <% end %>
+	</td>
+	<td><%= link_to "Редактировать", edit_card_path(card) %></td>
+	<td><%= link_to "Удалить", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </table>
-</div>
