@@ -1,17 +1,14 @@
 <p>
-<strong>Original text:</strong>
-<%= @card.original_text %>
+  <strong>Original text:</strong>
+  <%= @card.original_text %>
 </p>
 <p>
-<strong>Translated text:</strong>
-<%= @card.translated_text %>
+  <strong>Translated text:</strong>
+  <%= @card.translated_text %>
 </p>
 <p>
-<strong>Review date:</strong>
-<% if @card.review_date == nil %>
-  <%= "Not Defined" %>
-<% else %>
+  <strong>Review date:</strong>
   <%= @card.review_date.strftime('%d/%m/%Y') %>
-<% end %>
 </p>
+
 <%= link_to 'Back', cards_path %>
