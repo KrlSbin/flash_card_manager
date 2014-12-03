@@ -1,7 +1,6 @@
 class CardsController < ApplicationController
-
   before_action :set_card_variable, only: [:show, :edit, :destroy, :update]
-  
+
   def index
     @cards = Card.all
   end
@@ -45,7 +44,7 @@ class CardsController < ApplicationController
   def card_params
     params.require(:card).permit(:original_text, :translated_text, :review_date)
   end
-  
+
   def set_card_variable
     @card = Card.find(params[:id])
   end
