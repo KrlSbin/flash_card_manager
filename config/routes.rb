@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  root "static_pages#index"
+  root "trainer#index"
+
+  get "/trainer", to: "trainer#check_translate"
+
   resources :cards
 end
