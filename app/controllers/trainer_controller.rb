@@ -11,6 +11,6 @@ class TrainerController < ApplicationController
     else
       flash[:notice] = "Не правильно!"
     end
-    redirect_to '/'
+    redirect_to "/"
   end
 end
