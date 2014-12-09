@@ -1,17 +1,16 @@
 <p>
-<% if @card %>
-  <%= @card.original_text %>
-  <%= form_tag("/trainer", method: "get") do %>
-    <%= hidden_field_tag(:correct_translation, @card.translated_text) %>
-    <%= hidden_field_tag(:card_id, @card.id) %>
-    <%= label_tag(:translated_text, "Translated text:") %>
-    <%= text_field_tag(:translated_text) %>
-    <%= submit_tag("Проверить") %>
+  <% if @card.nil? %>
+    <%= "Новых карточек нет." %>
+  <% else %>
+    <%= @card.original_text %>
+    <%= form_tag(trainer_path, method: "put") do %>
+      <%= hidden_field_tag(:card_id, @card.id) %>
+      <%= label_tag(:translated_text, "Translated text:") %>
+      <%= text_field_tag(:translated_text) %>
+      <%= submit_tag("Проверить") %>
+    <% end %>
   <% end %>
-<% else %>
-  <% flash[:notice] = "Новых карточек нет." %>
-<% end %>
 </p>
-
-<%= flash[:notice] %>
-<% flash[:notice] = "" %>
+<p>
+  <%= flash[:notice] %>
+</p>

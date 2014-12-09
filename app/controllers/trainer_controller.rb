@@ -1,16 +1,17 @@
 class TrainerController < ApplicationController
   def index
-    @card = Card.where("review_date <= ?", Time.now).sample
+    @card = Card.old_reviewed.sample
   end
 
   def check_translate
-    if params[:translated_text] == params[:correct_translation]
-      @card = Card.find(params[:card_id])
-      @card.update_attribute(:review_date, Time.now + 3.days)
-      flash[:notice] = "Правильно! "
+    card_id = params[:card_id].to_i
+    translation = params[:translated_text].to_s
+
+    if Card.check_translate_of(card_id, translation)
+      flash[:notice] = "Правильно!"
     else
-      flash[:notice] = "Не правильно!"
+      flash[:notice] = "Неправильно!"
     end
-    redirect_to "/"
-  end
+    redirect_to root_path
+  end  
 end
