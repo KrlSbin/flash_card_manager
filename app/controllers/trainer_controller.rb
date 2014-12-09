@@ -13,5 +13,5 @@ class TrainerController < ApplicationController
       flash[:notice] = "Неправильно!"
     end
     redirect_to root_path
-  end  
+  end 
 end

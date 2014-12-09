@@ -6,7 +6,7 @@ class Card < ActiveRecord::Base
 
   before_create :set_review_date
 
-  def self.check_translate_of(card_id,translation)
+  def self.check_translate_of(card_id, translation)
     @card = Card.find(card_id)
 
     if @card.translated_text == translation
@@ -27,5 +27,5 @@ class Card < ActiveRecord::Base
     if translated_text == original_text
       errors.add(:translated_text, "can't be the same as original")
     end
-  end  
+  end
 end
