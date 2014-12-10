@@ -7,8 +7,8 @@ class Card < ActiveRecord::Base
   before_create :set_review_date
 
   def check_translation(translation)
-    if self.translated_text == translation
-      self.update_attribute(:review_date, Time.now + 3.days)
+    if translated_text == translation
+      update_attribute(:review_date, Time.now + 3.days)
       return true
     else
       return false
