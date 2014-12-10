@@ -1,13 +1,12 @@
 class TrainerController < ApplicationController
   def index
-    @card = Card.old_reviewed.sample
+    @card = Card.for_review.sample
   end
 
   def check_translate
-    card_id = params[:card_id].to_i
-    translation = params[:translated_text].to_s
+    @card = Card.find(params[:card_id])
 
-    if Card.check_translate_of(card_id, translation)
+    if @card.check_translation(params[:translated_text])
       flash[:notice] = "Правильно!"
     else
       flash[:notice] = "Неправильно!"

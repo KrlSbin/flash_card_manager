@@ -1,16 +1,15 @@
 <p>
-  <% if @card.nil? %>
-    <%= "Новых карточек нет." %>
-  <% else %>
+  <% if @card %>
     <%= @card.original_text %>
-    <%= form_tag(trainer_path, method: "put") do %>
+    <%= simple_form_for @card, url: trainer_path, method: :put do %>
       <%= hidden_field_tag(:card_id, @card.id) %>
       <%= label_tag(:translated_text, "Translated text:") %>
       <%= text_field_tag(:translated_text) %>
       <%= submit_tag("Проверить") %>
     <% end %>
+  <% else %>
+    <%= "Новых карточек нет." %>
   <% end %>
 </p>
-<p>
-  <%= flash[:notice] %>
-</p>
+
+<%= render "layouts/notice"%>
