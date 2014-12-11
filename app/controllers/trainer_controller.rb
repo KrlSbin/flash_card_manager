@@ -3,7 +3,7 @@ class TrainerController < ApplicationController
     @card = Card.for_review.sample
   end
 
-  def check_translate
+  def check_translation
     @card = Card.find(params[:card_id])
 
     if @card.check_translation(params[:translated_text])
