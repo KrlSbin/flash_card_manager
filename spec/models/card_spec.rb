@@ -1,31 +1,31 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Card do
-  it "should not save instance with identical original and translated text fields" do
+  it "not save instance with identical original and translated text fields" do
     card = Card.new(original_text: "Word", translated_text: "Word")
     expect(card.save).to be false
   end
- 
-  it "should save instance with different original and translated text fields" do
+
+  it "save instance with different original and translated text fields" do
     card = Card.new(original_text: "Word", translated_text: "Слово")
     expect(card.save).to be true
-  end 
+  end
 
-  it "should check positive translation" do
+  it "check positive translation" do
     card = Card.new(original_text: "Word", translated_text: "Слово")
     card.save
 
     expect(card.check_translation("Слово")).to be true
   end
 
-  it "should check negative translation" do
+  it "check negative translation" do
     card = Card.new(original_text: "Word", translated_text: "Слово")
     card.save
 
     expect(card.check_translation("Словечки")).to be false
   end
 
-  it "should update review date if translation is correct" do
+  it "update review date if translation is correct" do
     card = Card.new(original_text: "Word", translated_text: "Слово")
     card.save
     original_review_date = card.review_date
@@ -36,7 +36,7 @@ describe Card do
     expect(card.review_date).to eql(original_review_date + 3.day)
   end
 
-  it "should not update review date if translation is not correct" do
+  it "not update review date if translation is not correct" do
     card = Card.new(original_text: "Word", translated_text: "Слово")
     card.save
     original_review_date = card.review_date
