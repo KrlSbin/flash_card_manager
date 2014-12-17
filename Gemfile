@@ -15,3 +15,7 @@ gem 'spring',        group: :development
 gem 'execjs'
 gem 'therubyracer'
 gem 'simple_form'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
