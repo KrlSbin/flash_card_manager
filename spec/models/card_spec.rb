@@ -30,9 +30,6 @@ describe Card do
     card.save
     original_review_date = card.review_date
     card.check_translation("Слово")
-    expect(card.review_date).not_to eql(original_review_date)
-    expect(card.review_date).to be > original_review_date + 1.day
-    expect(card.review_date).to be > original_review_date + 2.day
     expect(card.review_date).to eql(original_review_date + 3.day)
   end
 
@@ -42,6 +39,5 @@ describe Card do
     original_review_date = card.review_date
     card.check_translation("Словечко")
     expect(card.review_date).to eql(original_review_date)
-    expect(card.review_date).not_to eql(original_review_date + 3.day)
   end
 end
