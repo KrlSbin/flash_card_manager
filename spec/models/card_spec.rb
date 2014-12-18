@@ -8,7 +8,7 @@ describe Card do
 
   it "save instance with different original and translated text fields" do
     card = Card.new(original_text: "Word", translated_text: "Слово")
-    expect(card.save).to be true
+    expect(card.valid?).to be true
   end
 
   it "check positive translation" do
