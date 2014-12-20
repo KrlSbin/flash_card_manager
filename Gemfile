@@ -17,5 +17,8 @@ gem 'therubyracer'
 gem 'simple_form'
 
 group :development, :test do
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'factory_girl'
   gem 'rspec-rails'
 end
