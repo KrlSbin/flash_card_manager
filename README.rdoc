@@ -1,5 +1,7 @@
 == README
 
+https://github.com/NoPos/flash_card_manager/settings/hooks/3711777#test
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
