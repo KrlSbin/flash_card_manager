@@ -19,6 +19,6 @@ gem 'simple_form'
 group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
 end
