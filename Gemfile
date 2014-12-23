@@ -22,4 +22,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'travis-lint'
+  gem 'database_cleaner'
 end
