@@ -1,4 +1,6 @@
 class Card < ActiveRecord::Base
+  belongs_to :user
+
   scope :for_review, -> { where("review_date <= ?", Time.now) }
 
   validates :original_text, :translated_text, presence: true
