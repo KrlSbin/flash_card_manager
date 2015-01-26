@@ -17,7 +17,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # When a non logged in user tries to enter a page that requires login, save
-  # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
+  # the URL he wanted to reach, and send him there after login, 
+  # using 'redirect_back_or_to'.
   # Default: `true`
   #
   # config.save_return_to_url =
@@ -43,7 +44,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- http_basic_auth --
-  # What realm to display for which controller name. For example {"My App" => "Application"}
+  # What realm to display for which controller name. 
+  # For example {"My App" => "Application"}
   # Default: `{"application" => "Application"}`
   #
   # config.controller_to_realm_map =
@@ -69,13 +71,15 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- external --
-  # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid] .
+  # What providers are supported by this app, i.e. 
+  # [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid] .
   # Default: `[]`
   #
   # config.external_providers =
 
 
-  # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
+  # You can change it by your local ca_file. i.e. 
+  # '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
   # Default: `'path/to/ca_file'`
   #
