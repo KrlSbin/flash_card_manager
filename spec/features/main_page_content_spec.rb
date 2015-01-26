@@ -2,16 +2,21 @@ require "rails_helper"
 
 describe "main page content" do
   it "Reviewed card is not shown on main page" do
-    card = create(:card, original_text: "card")
+    create(:card, original_text: "card")
     card.update_attributes(review_date: Time.now + 3.days)
     visit root_path
+    login_user_post(card.user.email, card.user.password)
+    click_button "Login"
     expect(page).not_to have_content card.original_text
   end
 
   it "Unreviewed card is shown on main page" do
-    create(:card, original_text: "card")
+    card = create(:card, original_text: "card")
     visit root_path
-    expect(page).to have_content "card"
+    fill_in "Email", with: card.user.email
+    fill_in "Password", with: card.user.password
+    click_button "Login"
+    expect(page).to have_content card.original_text
   end
 
   it "main title presence" do

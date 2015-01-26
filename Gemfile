@@ -15,6 +15,7 @@ gem 'spring',        group: :development
 gem 'execjs'
 gem 'therubyracer'
 gem 'simple_form'
+gem 'sorcery'
 
 group :development, :test do
   gem 'capybara'
