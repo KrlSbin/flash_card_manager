@@ -1,9 +1,7 @@
 # The first thing you need to configure is which modules you need in your app.
-# The default is nothing which will include only core features
-# (password encryption, login/logout).
+# The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
-# :reset_password, :session_timeout, :brute_force_protection,
-# :activity_logging, :external
+# :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
 Rails.application.config.sorcery.submodules = []
 
 # Here you can configure each submodule's features.
@@ -17,8 +15,7 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # When a non logged in user tries to enter a page that requires login, save
-  # the URL he wanted to reach, and send him there after login, 
-  # using 'redirect_back_or_to'.
+  # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
   # Default: `true`
   #
   # config.save_return_to_url =
@@ -28,6 +25,12 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `nil`
   #
   # config.cookie_domain =
+
+
+  # Allow the remember_me cookie to be set through AJAX
+  # Default: `true`
+  #
+  # config.remember_me_httponly =
 
 
   # -- session timeout --
@@ -44,8 +47,7 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- http_basic_auth --
-  # What realm to display for which controller name. 
-  # For example {"My App" => "Application"}
+  # What realm to display for which controller name. For example {"My App" => "Application"}
   # Default: `{"application" => "Application"}`
   #
   # config.controller_to_realm_map =
@@ -71,15 +73,13 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- external --
-  # What providers are supported by this app, i.e. 
-  # [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid] .
+  # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce] .
   # Default: `[]`
   #
   # config.external_providers =
 
 
-  # You can change it by your local ca_file. i.e. 
-  # '/etc/pki/tls/certs/ca-bundle.crt'
+  # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
   # Default: `'path/to/ca_file'`
   #
@@ -107,7 +107,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.xing.user_info_mapping = {first_name: "first_name", last_name: "last_name"}
   #
   #
-  # Twitter wil not accept any requests nor redirect uri containing localhost,
+  # Twitter will not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   #
   # config.twitter.key = ""
@@ -120,6 +120,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
   # config.facebook.user_info_mapping = {:email => "name"}
   # config.facebook.access_permissions = ["email", "publish_stream"]
+  # config.facebook.display = "page"
   #
   # config.github.key = ""
   # config.github.secret = ""
@@ -145,9 +146,32 @@ Rails.application.config.sorcery.configure do |config|
   # config.liveid.callback_url = "http://mydomain.com:3000/oauth/callback?provider=liveid"
   # config.liveid.user_info_mapping = {:username => "name"}
 
+  # For information about JIRA API:
+  # https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+Example+-+OAuth+authentication
+  # to obtain the consumer key and the public key you can use the jira-ruby gem https://github.com/sumoheavy/jira-ruby
+  # or run openssl req -x509 -nodes -newkey rsa:1024 -sha1 -keyout rsakey.pem -out rsacert.pem to obtain the public key
+  # Make sure you have configured the application link properly
+
+  # config.jira.key = "1234567"
+  # config.jira.secret = "jiraTest"
+  # config.jira.site = "http://localhost:2990/jira/plugins/servlet/oauth"
+  # config.jira.signature_method =  "RSA-SHA1"
+  # config.jira.private_key_file = "rsakey.pem"
+
+  # For information about Salesforce API:
+  # https://developer.salesforce.com/signup &
+  # https://www.salesforce.com/us/developer/docs/api_rest/
+  # Salesforce callback_url must be https. You can run the following to generate self-signed ssl cert
+  # openssl req -new -newkey rsa:2048 -sha1 -days 365 -nodes -x509 -keyout server.key -out server.crt
+  # Make sure you have configured the application link properly
+  # config.salesforce.key = '123123'
+  # config.salesforce.secret = 'acb123'
+  # config.salesforce.callback_url = "https://127.0.0.1:9292/oauth/callback?provider=salesforce"
+  # config.salesforce.scope = "full"
+  # config.salesforce.user_info_mapping = {:email => "email"}
 
   # --- user config ---
-  # config.user_config do |user|
+  config.user_config do |user|
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -223,11 +247,6 @@ Rails.application.config.sorcery.configure do |config|
 
 
     # -- remember_me --
-    # allow the remember_me cookie to settable through AJAX
-    # Default: `true`
-    #
-    # user.remember_me_httponly =
-
     # How long in seconds the session length will be
     # Default: `604800`
     #
@@ -336,7 +355,7 @@ Rails.application.config.sorcery.configure do |config|
     # user.reset_password_expiration_period =
 
 
-    # hammering protection, how long to wait before allowing another email to be sent.
+    # hammering protection, how long in seconds to wait before allowing another email to be sent.
     # Default: `5 * 60`
     #
     # user.reset_password_time_between_emails =
@@ -406,7 +425,7 @@ Rails.application.config.sorcery.configure do |config|
     # user.last_activity_at_attribute_name =
 
 
-    # How long since last activity is he user defined logged out?
+    # How long since last activity is the user defined logged out?
     # Default: `10 * 60`
     #
     # user.activity_timeout =
@@ -435,7 +454,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `:uid`
     #
     # user.provider_uid_attribute_name =
-  # end
+  end
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
