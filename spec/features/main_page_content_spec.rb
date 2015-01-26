@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "main page content" do
   it "Reviewed card is not shown on main page" do
-    create(:card, original_text: "card")
+    card = create(:card, original_text: "card")
     card.update_attributes(review_date: Time.now + 3.days)
     visit root_path
     login_user_post(card.user.email, card.user.password)

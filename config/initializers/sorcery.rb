@@ -73,7 +73,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- external --
-  # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce] .
+  # What providers are supported by this app,
+  # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce] .
   # Default: `[]`
   #
   # config.external_providers =
@@ -171,7 +172,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.salesforce.user_info_mapping = {:email => "email"}
 
   # --- user config ---
-  config.user_config do |user|
+  # config.user_config do |user|
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -454,7 +455,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `:uid`
     #
     # user.provider_uid_attribute_name =
-  end
+  # end
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
