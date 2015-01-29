@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
 	auto_login(@user)
-        format.html { redirect_to :users, notice: 'User was created.' }
+	format.html { redirect_to :users, notice: 'User was created.' }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was updated.' }
+        format.html { redirect_to @user, notice: "User was updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was destroyed.' }
+      format.html { redirect_to users_url, notice: "User was destroyed." }
       format.json { head :no_content }
     end
   end
