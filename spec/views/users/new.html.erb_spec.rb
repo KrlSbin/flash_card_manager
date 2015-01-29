@@ -5,7 +5,6 @@ RSpec.describe "users/new", :type => :view do
     assign(:user, User.new(
       :email => "MyString",
       :password => "MyString",
-      :password_confirmation => "MyString"
     ))
   end
 
@@ -17,8 +16,6 @@ RSpec.describe "users/new", :type => :view do
       assert_select "input#user_email[name=?]", "user[email]"
 
       assert_select "input#user_password[name=?]", "user[password]"
-
-      assert_select "input#user_password_confirmation[name=?]", "user[password_confirmation]"
     end
   end
 end

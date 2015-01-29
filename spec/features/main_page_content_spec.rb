@@ -4,18 +4,17 @@ describe "main page content" do
   it "Reviewed card is not shown on main page" do
     card = create(:card, original_text: "card")
     card.update_attributes(review_date: Time.now + 3.days)
+    visit login_path
+    login_user_post(card.user.email, "1234")
     visit root_path
-    login_user_post(card.user.email, card.user.password)
-    click_button "Login"
     expect(page).not_to have_content card.original_text
   end
 
   it "Unreviewed card is shown on main page" do
     card = create(:card, original_text: "card")
+    visit login_path
+    login_user_post(card.user.email, "1234")
     visit root_path
-    fill_in "Email", with: card.user.email
-    fill_in "Password", with: card.user.password
-    click_button "Login"
     expect(page).to have_content card.original_text
   end
 
@@ -25,6 +24,9 @@ describe "main page content" do
   end
 
   it "Add new card and translate it" do
+    user = create(:user)
+    visit login_path
+    login_user_post(user.email, "1234")
     visit root_path
     click_link("Добавить карточку")
     fill_in "Original text", with: "Sea"

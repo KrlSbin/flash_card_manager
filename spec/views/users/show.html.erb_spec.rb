@@ -5,7 +5,6 @@ RSpec.describe "users/show", :type => :view do
     @user = assign(:user, User.create!(
       :email => "Email",
       :password => "Password",
-      :password_confirmation => "Password"
     ))
   end
 
