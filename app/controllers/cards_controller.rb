@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :destroy, :update]
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
 
   def new
@@ -47,7 +47,5 @@ class CardsController < ApplicationController
 
   def set_card
     @card = current_user.cards.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render text: "There is no such card for current user"
   end
 end
