@@ -21,3 +21,6 @@
 
 # Ignore "yml" files
 /config/database.yml
+
+# Sorcery config file
+/config/initializers/sorcery.rb
