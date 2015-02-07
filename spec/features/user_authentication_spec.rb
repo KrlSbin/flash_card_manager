@@ -8,7 +8,7 @@ describe "Authentication procedure" do
     expect(page).to have_content "Login successful"
     click_link "Logout"
     expect(page).to have_content "Logged out!"
-   end
+  end
 
   it "unsuccessful login to portal with wrong password" do
     user = create(:user)
@@ -36,7 +36,7 @@ describe "Authentication procedure" do
     click_button "Create User"
     expect(page).to have_content "Password is too short"
   end
-  
+
   it "unsuccessful new user registration with already used email" do
     visit root_path
     click_link "Register"
@@ -52,7 +52,7 @@ describe "Authentication procedure" do
     click_button "Create User"
     expect(page).to have_content "Email has already been taken"
   end
-  
+
   it "unsuccessful new user registration with empty password" do
     visit root_path
     click_link "Register"
@@ -70,7 +70,7 @@ describe "Authentication procedure" do
     click_button "Create User"
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
-  
+
   it "Usuccessful new user registration with wrong password confirmation" do
     visit root_path
     click_link "Register"
@@ -81,4 +81,3 @@ describe "Authentication procedure" do
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
 end
-
