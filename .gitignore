@@ -23,4 +23,4 @@
 /config/database.yml
 
 # Sorcery config file
-/config/initializers/sorcery.rb
+#/config/initializers/sorcery.rb
