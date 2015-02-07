@@ -16,6 +16,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'simple_form'
 gem 'sorcery', '~> 0.9.0'
+gem 'figaro'
 
 group :development, :test do
   gem 'capybara'

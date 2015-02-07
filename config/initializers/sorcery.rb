@@ -80,9 +80,9 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.external_providers = [:vk]
   
-  config.vk.key = "4768641"
-  config.vk.secret = "f9qAjFYRPHZHsNKzKr9k"
-  config.vk.callback_url = "http://107.170.140.163:3000/oauth/callback?provider=vk"
+  config.vk.key = ENV["sorcery_vk_key"]
+  config.vk.secret = ENV["sorcery_vk_secret"]
+  config.vk.callback_url = ENV["sorcery_vk_callback_url"]
   config.vk.user_info_mapping = {email: "email"}
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
