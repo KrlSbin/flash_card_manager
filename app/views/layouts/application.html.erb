@@ -9,13 +9,14 @@
 <body>
   <div id="nav">
     <% if current_user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-      <%= link_to "Logout", :logout, method: :post %>
+      <%= link_to "Edit Profile", edit_user_path(current_user.id) %> |
+      <%= link_to "Logout", :logout, method: :post %> |
+      <%= current_user.email %>
     <% else %>
       <%= link_to "Register", new_user_path %> |
       <%= link_to "Login", :login %> |
+      <%= link_to "Login with VK", auth_at_provider_path(:provider => :vk) %>
     <% end %>
-    <%= link_to "Login with VK", auth_at_provider_path(:provider => :vk) %>
   </div>
   <div>
     <p id="notice"><%= flash[:notice] %></p>
