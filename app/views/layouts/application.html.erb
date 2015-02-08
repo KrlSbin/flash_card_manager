@@ -2,33 +2,35 @@
 <html>
 <head>
   <title>Флэшкарточкер</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="nav">
     <% if current_user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user.id) %> |
-      <%= link_to "Logout", :logout, method: :post %> |
+      <%= link_to "Edit Profile", edit_user_path(current_user) %> |
+      <%= link_to "Logout", logout_path, method: :post %> |
       <%= current_user.email %>
     <% else %>
       <%= link_to "Register", new_user_path %> |
-      <%= link_to "Login", :login %> |
-      <%= link_to "Login with VK", auth_at_provider_path(:provider => :vk) %>
+      <%= link_to "Login", login_path %> |
+      <%= link_to "Login with VK", auth_at_provider_path(provider: :vk) %>
     <% end %>
   </div>
-  <div>
-    <p id="notice"><%= flash[:notice] %></p>
-    <p id="alert"><%= flash[:alert] %></p>
-  </div>
+  <% if flash.any? %>
+    <div>
+      <p id="notice"><%= flash[:notice] %></p>
+      <p id="alert"><%= flash[:alert] %></p>
+    </div>
+  <% end %>
   <section id="container">
 
     <header class="clearfix">
       <h1>Флэшкарточкер</h1>
       <ul class="navigation-links">
-	<li><%= link_to 'Все карточки', cards_path %></li>
-	<li><%= link_to 'Добавить карточку', new_card_path %></li>
+	<li><%= link_to "Все карточки", cards_path %></li>
+	<li><%= link_to "Добавить карточку", new_card_path %></li>
       </ul>
     </header>
 
