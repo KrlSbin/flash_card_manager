@@ -30,10 +30,10 @@ describe "main page content" do
     fill_in "Translated text", with: "Море"
     click_button "Create Card"
     visit root_path
-    fill_in "Translated text", with: "Мор"
+    fill_in "Перевод:", with: "Мор"
     click_button "Проверить"
     expect(page).to have_content "Неправильно!"
-    fill_in "Translated text", with: "Море"
+    fill_in "Перевод:", with: "Море"
     click_button "Проверить"
     expect(page).to have_content "Правильно!"
   end

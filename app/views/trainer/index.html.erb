@@ -4,7 +4,7 @@
     <%= @card.original_text %>
     <%= simple_form_for @card, url: trainer_path, method: :put do %>
       <%= hidden_field_tag(:card_id, @card.id) %>
-      <%= label_tag(:translated_text, "Translated text:") %>
+      <%= label_tag(:translated_text, "Перевод:") %>
       <%= text_field_tag(:translated_text) %>
       <%= submit_tag("Проверить") %>
     <% end %>
