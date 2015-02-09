@@ -9,21 +9,22 @@
 <body>
   <div id="nav">
     <% if current_user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user) %> |
-      <%= link_to "Logout", logout_path, method: :post %> |
+      <%= link_to "Редактировать профиль", edit_user_path(current_user) %> |
+      <%= link_to "Выйти", logout_path, method: :post %> |
       <%= current_user.email %>
     <% else %>
-      <%= link_to "Register", new_user_path %> |
-      <%= link_to "Login", login_path %> |
-      <%= link_to "Login with VK", auth_at_provider_path(provider: :vk) %>
+      <%= link_to "Регистрация", new_user_path %> |
+      <%= link_to "Войти", login_path %> |
+      <%= link_to "Войти через vk.com", auth_at_provider_path(provider: :vk) %>
     <% end %>
   </div>
-  <% if flash.any? %>
-    <div>
-      <p id="notice"><%= flash[:notice] %></p>
-      <p id="alert"><%= flash[:alert] %></p>
-    </div>
-  <% end %>
+  <div>
+    <% if flash.any? %>
+      <% flash.each do |message_type, message| %>
+	<p class="alert alert-<%= message_type %>"><%= message %></p>
+      <% end %>
+    <% end %>
+  </div>
   <section id="container">
 
     <header class="clearfix">
