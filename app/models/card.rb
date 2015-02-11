@@ -1,7 +1,7 @@
 class Card < ActiveRecord::Base
   belongs_to :user
 
-  scope :for_review, -> { where("review_date <= ?", Time.now) }
+  scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
   validates :original_text, :translated_text, presence: true
   validate :original_and_translated_not_equal

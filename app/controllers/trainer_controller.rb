@@ -1,6 +1,6 @@
 class TrainerController < ApplicationController
   def index
-    @card = current_user.cards.for_review.sample
+    @card = current_user.cards.for_review.first
   end
 
   def check_translation
