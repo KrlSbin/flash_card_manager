@@ -2,8 +2,8 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @user.email %>
+  <%= current_user.email %>
 </p>
 
-<%= link_to "Редактировать", edit_user_path(@user) %> |
+<%= link_to "Редактировать", edit_user_path(current_user) %> |
 <%= link_to "Назад", root_path %>
