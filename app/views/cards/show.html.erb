@@ -10,5 +10,9 @@
   <strong>Review date:</strong>
   <%= @card.review_date.strftime('%d/%m/%Y') %>
 </p>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @card.card_photo.url(:medium) %>
+</p>
 
 <%= link_to "Назад", cards_path %>

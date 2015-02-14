@@ -6,6 +6,7 @@
       <%= hidden_field_tag(:card_id, @card.id) %>
       <%= label_tag(:translated_text, "Перевод:") %>
       <%= text_field_tag(:translated_text) %>
+      <%= image_tag @card.card_photo.url(:medium) %>
       <%= submit_tag("Проверить") %>
     <% end %>
   <% else %>

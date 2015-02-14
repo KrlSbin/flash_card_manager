@@ -1,4 +1,4 @@
-<%= simple_form_for @card do |f| %>
+<%= simple_form_for @card, html: { multipart: true } do |f| %>
   <% if @card.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@card.errors.count, "error") %> не позволяют сохранить эту карточку:</h2>
@@ -14,6 +14,9 @@
   </p>
   <p>
     <%= f.input :translated_text %>
+  </p>
+  <p>
+    <%= f.input :card_photo, as: :file %>
   </p>
   <p>
    <%= f.button :submit %>

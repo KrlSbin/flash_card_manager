@@ -1,5 +1,7 @@
 class Card < ActiveRecord::Base
   belongs_to :user
+  has_attached_file :card_photo, styles: { medium: "360x360" }
+  validates_attachment_content_type :card_photo, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
