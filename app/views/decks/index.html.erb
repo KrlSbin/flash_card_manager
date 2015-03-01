@@ -1,0 +1,18 @@
+<table class="table">
+  <tr>
+    <th>Original text</th>
+    <th>Default state</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% current_user.decks.each do |deck| %>
+    <tr>
+      <td><%= deck.name %></td>
+      <td><%= deck.default %></td>
+      <td><%= link_to "Редактировать", edit_deck_path(deck) %></td>
+      <td><%= link_to "Удалить", deck_path(deck), method: :delete, data: { confirm: "Вы уверены?" } %></td>
+      <td><%= link_to "Добавить карту", new_deck_card_path(deck) %></td>
+    </tr>
+  <% end %>
+</table>

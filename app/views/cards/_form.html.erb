@@ -1,0 +1,31 @@
+<%= simple_form_for [@deck, @card], html: { multipart: true } do |f| %>
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@card.errors.count, "error") %> не позволяют сохранить эту карточку:</h2>
+      <ul>
+	<% @card.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+      </ul>
+    </div
+  <% end %>
+  <div class="field">
+    <%= f.label "Фраза/Слово" %><br>
+    <%= f.input_field :original_text, size: 20 %>
+  </div>
+  <div class="field">
+    <%= f.label "Перевод" %><br>
+    <%= f.input_field :translated_text, size: 20 %>
+  </div>
+  <div class="field">
+    <%= f.input :card_photo, label: "Картинка", as: :file %><br>
+  </div>
+
+  <%= hidden_field_tag(:user_id, current_user.id) %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<br>
+<%= link_to "Назад", user_cards_path(current_user) %>

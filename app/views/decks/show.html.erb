@@ -1,0 +1,15 @@
+<p>
+  <strong>Card deck name:</strong>
+  <%= @deck.name %>
+</p>
+<p>
+  <% if @deck.default %>
+    <strong>
+      <%= "Default" %>
+    <% else %>
+      <%= "Non-default" %>
+    </strong>
+  <% end %>
+</p>
+
+<%= link_to "Назад", user_decks_path(current_user) %>
