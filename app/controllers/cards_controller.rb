@@ -2,7 +2,6 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :destroy, :update]
 
   def index
-#    @cards = current_user.cards.all
   end
 
   def new

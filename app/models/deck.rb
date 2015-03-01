@@ -7,7 +7,7 @@ class Deck < ActiveRecord::Base
   validate :only_one_current
 
   def only_one_current
-    if default? and Deck.current_deck.all.any? and id != Deck.current_deck.first.id
+    if default? && Deck.current_deck.all.any? && id != Deck.current_deck.first.id
       errors.add(:default, " card deck already exists!")
     end
   end
