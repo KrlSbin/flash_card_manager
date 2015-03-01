@@ -1,18 +1,26 @@
 <table class="table">
   <tr>
-    <th>Original text</th>
-    <th>Translated text</th>
-    <th>Review date</th>
+    <th>Слово/Фраза</th>
+    <th>Перевод</th>
+    <th>Дата просмотра</th>
     <th></th>
     <th></th>
+    <th>Колода</th>
+    <th>USER ID</th>
   </tr>
-  <% current_user.cards.each do |card| %>
-    <tr>
-      <td><%= card.original_text %></td>
-      <td><%= card.translated_text %></td>
-      <td><%= card.review_date.strftime('%d/%m/%Y') %></td>
-      <td><%= link_to "Редактировать", edit_card_path(card) %></td>
-      <td><%= link_to "Удалить", card_path(card), method: :delete, data: { confirm: "Вы уверены?" } %></td>
-    </tr>
+  <% current_user.decks.each do |deck| %>
+    <% deck.cards.each do |card| %>
+      <tr>
+	<td><%= card.original_text %></td>
+	<td><%= card.translated_text %></td>
+	<td><%= card.review_date.strftime('%d/%m/%Y') %></td>
+	<td><%= link_to "Редактировать", edit_deck_card_path(deck, card) %></td>
+  	<td><%= link_to "Удалить", deck_card_path(deck, card), 
+	                           method: :delete, 
+				   data: { confirm: "Вы уверены?" } %></td>
+	<td><%= deck.name %></td>
+	<td><%= card.user_id %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>

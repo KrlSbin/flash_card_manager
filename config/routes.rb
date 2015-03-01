@@ -5,9 +5,19 @@ Rails.application.routes.draw do
   root to: "trainer#index"
   put "trainer", to: "trainer#check_translation"
 
-  resources :cards
-  resources :users
   resources :user_sessions
+
+  resources :users do
+    resources :cards, only: [:index]
+  end
+
+  resources :users do
+    resources :decks, only: [:index]
+  end
+
+  resources :decks do
+    resources :cards
+  end
 
   get "login" => "user_sessions#new"
   post "logout" => "user_sessions#destroy"

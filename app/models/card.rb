@@ -1,4 +1,5 @@
 class Card < ActiveRecord::Base
+  belongs_to :deck
   belongs_to :user
   has_attached_file :card_photo, styles: { medium: "360x360" }
   validates_attachment_content_type :card_photo,

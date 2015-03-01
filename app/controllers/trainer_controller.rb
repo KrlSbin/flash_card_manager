@@ -1,6 +1,13 @@
 class TrainerController < ApplicationController
   def index
-    @card = current_user.cards.for_review.first
+    if current_user.decks.empty?
+      @deck = Deck.new
+      redirect_to new_deck_path(@deck)
+    elsif current_user.decks.current_deck.empty?
+      @card = current_user.cards.for_review.first
+    else
+      @card = current_user.decks.current_deck.first.cards.for_review.first
+    end
   end
 
   def check_translation

@@ -15,4 +15,5 @@
   <%= image_tag @card.card_photo.url(:medium) %>
 </p>
 
-<%= link_to "Назад", cards_path %>
+<%= link_to "Назад", deck_cards_path %> |
+<%= link_to "Добавить ещё одну", new_deck_card_path %>
