@@ -23,8 +23,8 @@ Capybara.javascript_driver = :poltergeist
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
-  config.before(:each) do
-    DatabaseCleaner.strategy = :deletion
+  config.before(:suite) do
+    DatabaseCleaner[:active_record].strategy = :transaction
     DatabaseCleaner.clean_with :truncation
   end
 

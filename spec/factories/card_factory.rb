@@ -1,12 +1,18 @@
 FactoryGirl.define do
   factory :user do
-    email "kirill@mail.ru"
+    email "kirills@mail.ru"
     password "1234"
     password_confirmation "1234"
   end
 
-  factory :card do
+  factory :deck do
     user
+    name "current deck"
+    default "true"
+  end
+
+  factory :card do
+    deck
     original_text "card"
     translated_text "карточка"
     review_date Time.now

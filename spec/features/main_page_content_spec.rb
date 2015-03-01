@@ -2,16 +2,16 @@ require "rails_helper"
 
 describe "main page content" do
   it "Reviewed card is not shown on main page" do
-    card = create(:card, original_text: "card")
+    card = create(:card)
     card.update_attributes(review_date: Time.now + 3.days)
-    login_user(card.user.email, "1234")
+    login_user(card.deck.user.email, "1234")
     visit root_path
     expect(page).not_to have_content card.original_text
   end
 
   it "Unreviewed card is shown on main page" do
-    card = create(:card, original_text: "card")
-    login_user(card.user.email, "1234")
+    card = create(:card)
+    login_user(card.deck.user.email, "1234")
     visit root_path
     expect(page).to have_content card.original_text
   end
@@ -22,12 +22,13 @@ describe "main page content" do
   end
 
   it "Add new card and translate it" do
-    user = create(:user)
-    login_user(user.email, "1234")
+    deck = create(:deck)
+    login_user(deck.user.email, "1234")
     visit root_path
-    click_link("Добавить карточку")
-    fill_in "Original text", with: "Sea"
-    fill_in "Translated text", with: "Море"
+    click_link("Все колоды пользователя")
+    click_link("Добавить карту")
+    fill_in "card_original_text", with: "Sea"
+    fill_in "card_translated_text", with: "Море"
     click_button "Create Card"
     visit root_path
     fill_in "Перевод:", with: "Мор"
