@@ -1,19 +1,27 @@
 require "rails_helper"
 
-describe "main page content" do
-  it "Reviewed card is not shown on main page" do
+describe "Trainer page" do
+  it "Reviewed user card is not shown on main page" do
     card = create(:card)
     card.update_attributes(review_date: Time.now + 3.days)
-    login_user(card.deck.user.email, "1234")
+    login_user(user.email, "1234")
     visit root_path
     expect(page).not_to have_content card.original_text
   end
 
-  it "Unreviewed card is shown on main page" do
+  it "Unreviewed user card is shown on trainer page" do
     card = create(:card)
-    login_user(card.deck.user.email, "1234")
+    login_user(user.email, "1234")
     visit root_path
     expect(page).to have_content card.original_text
+  end
+
+  it "Reviewed card from current deck is not shown on trainer page" do
+    pending
+  end
+
+  it "Unreviewed card from current deck is shown on trainer page" do
+    pending
   end
 
   it "main title presence" do
@@ -21,7 +29,7 @@ describe "main page content" do
     expect(page).to have_content "Флэшкарточкер"
   end
 
-  it "Add new card and translate it" do
+  it "Add new card to current deck, show and translate it" do
     deck = create(:deck)
     login_user(deck.user.email, "1234")
     visit root_path
@@ -37,5 +45,9 @@ describe "main page content" do
     fill_in "Перевод:", with: "Море"
     click_button "Проверить"
     expect(page).to have_content "Правильно!"
+  end
+
+  it "Add new card to non current deck, show and translate it" do
+    pending
   end
 end

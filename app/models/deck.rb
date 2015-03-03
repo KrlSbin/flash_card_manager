@@ -4,11 +4,9 @@ class Deck < ActiveRecord::Base
   has_many :cards, dependent: :destroy
   belongs_to :user
 
-  validate :only_one_current
+  validates :default, uniqueness: { scope: :user_id }, if: :default_is_true?
 
-  def only_one_current
-    if default? && Deck.current_deck.all.any? && id != Deck.current_deck.first.id
-      errors.add(:default, " card deck already exists!")
-    end
+  def default_is_true?
+    default == true
   end
 end
