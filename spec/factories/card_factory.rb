@@ -7,7 +7,7 @@ FactoryGirl.define do
 
   factory :deck do
     name "current deck"
-    default true
+    default false
   end
 
   factory :card do
