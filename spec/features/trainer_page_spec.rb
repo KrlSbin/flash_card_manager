@@ -24,12 +24,12 @@ describe "Trainer page" do
     user = create(:user)
     deck = user.decks.create(attributes_for(:deck))
     card = deck.cards.create(attributes_for(:card))
-    puts 
+    card.update_attributes(user_id: user.id)
     login_user(user.email, "1234")
     visit root_path
     expect(page).to have_content card.original_text
     deck.update_attributes(default: false)
-    login_user(user.email, "1234")
+    login_user(card.deck.user.email, "1234")
     visit root_path
     expect(page).to have_content card.original_text
     visit ("/decks/" + deck.id.to_s + "/edit")
@@ -46,11 +46,15 @@ describe "Trainer page" do
   end
 
   it "Add new card to current deck, show and translate it" do
-    deck = create(:deck)
-    login_user(deck.user.email, "1234")
+    user = create(:user)
+    login_user(user.email, "1234")
     visit root_path
-    click_link("Все колоды пользователя")
-    click_link("Добавить карту")
+    click_link("Добавить колоду")
+    fill_in "deck_name", with: "current2"
+    check "deck_default"
+    click_button "Create Deck"
+    click_link "Назад"
+    click_link "Добавить карту"
     fill_in "card_original_text", with: "Sea"
     fill_in "card_translated_text", with: "Море"
     click_button "Create Card"
@@ -64,6 +68,23 @@ describe "Trainer page" do
   end
 
   it "Add new card to non current deck, show and translate it" do
-    
+    user = create(:user)
+    login_user(user.email, "1234")
+    visit root_path
+    click_link("Добавить колоду")
+    fill_in "deck_name", with: "current2"
+    click_button "Create Deck"
+    click_link "Назад"
+    click_link "Добавить карту"
+    fill_in "card_original_text", with: "Sea"
+    fill_in "card_translated_text", with: "Море"
+    click_button "Create Card"
+    visit root_path
+    fill_in "Перевод:", with: "Мор"
+    click_button "Проверить"
+    expect(page).to have_content "Неправильно!"
+    fill_in "Перевод:", with: "Море"
+    click_button "Проверить"
+    expect(page).to have_content "Правильно!"
   end
 end
