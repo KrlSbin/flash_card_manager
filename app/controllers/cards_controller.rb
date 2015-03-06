@@ -5,14 +5,12 @@ class CardsController < ApplicationController
   end
 
   def new
-    @user = current_user
-    @deck = @user.decks.find(params[:deck_id])
+    @deck = current_user.decks.find(params[:deck_id])
     @card = @deck.cards.new
   end
 
   def create
-    @user = current_user
-    @deck = @user.decks.find(params[:deck_id])
+    @deck = current_user.decks.find(params[:deck_id])
     @card = @deck.cards.new(card_params)
     @card.user_id = params[:user_id]
 

@@ -1,8 +1,7 @@
 class TrainerController < ApplicationController
   def index
     if current_user.decks.empty?
-      @deck = Deck.new
-      redirect_to new_deck_path(@deck)
+      redirect_to new_deck_path()
     elsif current_user.decks.current_deck.empty?
       @card = current_user.cards.for_review.first
     else
