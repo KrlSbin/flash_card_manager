@@ -49,6 +49,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_current_deck
+    
+  end
+
   private
 
   def user_params

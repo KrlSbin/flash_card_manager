@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: "trainer#index"
   put "trainer", to: "trainer#check_translation"
 
+  get "set_current_deck", to: "users#set_current_deck"
   resources :user_sessions
 
   resources :users do

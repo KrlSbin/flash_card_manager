@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :cards, dependent: :destroy
   has_many :decks, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  belongs_to :deck, -> { where(default: true) }, foreign_key: :current_deck_id
 
   accepts_nested_attributes_for :authentications
 
