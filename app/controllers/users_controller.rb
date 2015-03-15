@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def set_current_deck
     current_user.set_current_deck(params[:deck_id])
-    render "decks/index"
+    redirect_to decks_path
   end
 
   private

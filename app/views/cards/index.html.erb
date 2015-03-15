@@ -6,7 +6,6 @@
     <th></th>
     <th></th>
     <th>Колода</th>
-    <th>USER ID</th>
   </tr>
   <% current_user.decks.each do |deck| %>
     <% deck.cards.each do |card| %>
@@ -19,7 +18,6 @@
 	                           method: :delete, 
 				   data: { confirm: "Вы уверены?" } %></td>
 	<td><%= deck.name %></td>
-	<td><%= card.user_id %></td>
       </tr>
     <% end %>
   <% end %>

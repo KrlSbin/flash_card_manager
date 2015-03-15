@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :cards, dependent: :destroy
   has_many :decks, dependent: :destroy
   has_many :authentications, dependent: :destroy
-  belongs_to :deck, -> { where(default: true) }, foreign_key: :current_deck_id
+  belongs_to :deck, -> { where(default: true) }, foreign_key: :current_deck
 
   accepts_nested_attributes_for :authentications
 
@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
   end
 
   def current_deck
-    if current_deck_id
-      decks.find(current_deck_id)
-    end
+    deck
   end
 end
