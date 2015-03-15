@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Trainer page" do
-  it "Reviewed user card is not shown on main page" do
+  it "does not show reviewed user card" do
     user = create(:user)
     deck = user.decks.create(attributes_for(:deck))
     card = deck.cards.create(attributes_for(:card))
@@ -11,16 +11,7 @@ describe "Trainer page" do
     expect(page).not_to have_content card.original_text
   end
 
-  it "Unreviewed user card is shown on trainer page" do
-    user = create(:user)
-    deck = user.decks.create(attributes_for(:deck))
-    card = deck.cards.create(attributes_for(:card))
-    login_user(user.email, "1234")
-    visit root_path
-    expect(page).to have_content card.original_text
-  end
-
-  it "show user card when current deck is not set" do
+  it "show unreviewed user card" do
     user = create(:user)
     deck = user.decks.create(attributes_for(:deck))
     card = deck.cards.create(attributes_for(:card))
@@ -28,16 +19,51 @@ describe "Trainer page" do
     login_user(user.email, "1234")
     visit root_path
     expect(page).to have_content card.original_text
-    deck.update_attributes(default: false)
-    login_user(card.deck.user.email, "1234")
-    visit root_path
-    expect(page).to have_content card.original_text
-    visit ("/decks/" + deck.id.to_s + "/edit")
-    uncheck "deck_default"
-    click_button "Update Deck"
+  end
+
+  it "show unreviewed card from current deck and get correct translation" do
+    user = create(:user)
+    login_user(user.email, "1234")
+    click_link "Добавить колоду"
+    fill_in "deck_name", with: "current"
+    click_button "Create Deck"
     click_link "Назад"
+    click_link "Добавить карту"
+    fill_in "card_original_text", with: "Sea"
+    fill_in "card_translated_text", with: "Море"
+    click_button "Create Card"
+    click_link "Назад"
+    click_link "Все колоды пользователя"
+    click_link "Сделать текущей"
     visit root_path
-    expect(page).to have_content card.original_text
+    expect(page).to have_content "Sea"
+    fill_in "Перевод:", with: "Мор"
+    click_button "Проверить"
+    expect(page).to have_content "Неправильно!"
+    fill_in "Перевод:", with: "Море"
+    click_button "Проверить"
+    expect(page).to have_content "Правильно!"
+  end
+
+  it "show unreviewed card from non-current deck and get correct translation" do
+    user = create(:user)
+    login_user(user.email, "1234")
+    click_link "Добавить колоду"
+    fill_in "deck_name", with: "current"
+    click_button "Create Deck"
+    click_link "Назад"
+    click_link "Добавить карту"
+    fill_in "card_original_text", with: "Sea"
+    fill_in "card_translated_text", with: "Море"
+    click_button "Create Card"
+    visit root_path
+    expect(page).to have_content "Sea"
+    fill_in "Перевод:", with: "Мор"
+    click_button "Проверить"
+    expect(page).to have_content "Неправильно!"
+    fill_in "Перевод:", with: "Море"
+    click_button "Проверить"
+    expect(page).to have_content "Правильно!"
   end
 
   it "main title presence" do
@@ -45,46 +71,4 @@ describe "Trainer page" do
     expect(page).to have_content "Флэшкарточкер"
   end
 
-  it "Add new card to current deck, show and translate it" do
-    user = create(:user)
-    login_user(user.email, "1234")
-    visit root_path
-    click_link("Добавить колоду")
-    fill_in "deck_name", with: "current2"
-    check "deck_default"
-    click_button "Create Deck"
-    click_link "Назад"
-    click_link "Добавить карту"
-    fill_in "card_original_text", with: "Sea"
-    fill_in "card_translated_text", with: "Море"
-    click_button "Create Card"
-    visit root_path
-    fill_in "Перевод:", with: "Мор"
-    click_button "Проверить"
-    expect(page).to have_content "Неправильно!"
-    fill_in "Перевод:", with: "Море"
-    click_button "Проверить"
-    expect(page).to have_content "Правильно!"
-  end
-
-  it "Add new card to non current deck, show and translate it" do
-    user = create(:user)
-    login_user(user.email, "1234")
-    visit root_path
-    click_link("Добавить колоду")
-    fill_in "deck_name", with: "current2"
-    click_button "Create Deck"
-    click_link "Назад"
-    click_link "Добавить карту"
-    fill_in "card_original_text", with: "Sea"
-    fill_in "card_translated_text", with: "Море"
-    click_button "Create Card"
-    visit root_path
-    fill_in "Перевод:", with: "Мор"
-    click_button "Проверить"
-    expect(page).to have_content "Неправильно!"
-    fill_in "Перевод:", with: "Море"
-    click_button "Проверить"
-    expect(page).to have_content "Правильно!"
-  end
 end

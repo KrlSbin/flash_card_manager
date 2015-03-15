@@ -2,10 +2,10 @@ class TrainerController < ApplicationController
   def index
     if current_user.decks.empty?
       redirect_to new_deck_path
-    elsif current_user.current_deck.any?
-      @card = current_user.cards.for_review.first
+    elsif current_user.current_deck.present?
+      @card = current_user.current_deck.cards.for_review.first
     else
-      @card = current_user.decks.current_deck.first.cards.for_review.first
+      @card = current_user.cards.for_review.first
     end
   end
 

@@ -50,12 +50,13 @@ class UsersController < ApplicationController
   end
 
   def set_current_deck
-    
+    current_user.set_current_deck(params[:deck_id])
+    render "decks/index"
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :authentications_attributes)
+    params.require(:user).permit(:email, :password, :password_confirmation, :authentications_attributes, :current_deck_id)
   end
 end

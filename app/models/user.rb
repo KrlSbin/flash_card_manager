@@ -15,4 +15,14 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
+
+  def set_current_deck(deck_id)
+    update_attribute(:current_deck_id, deck_id)
+  end
+
+  def current_deck
+    if current_deck_id
+      decks.find(current_deck_id)
+    end
+  end
 end
