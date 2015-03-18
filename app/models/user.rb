@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :cards, dependent: :destroy
   has_many :decks, dependent: :destroy
   has_many :authentications, dependent: :destroy
-  belongs_to :deck, -> { where(default: true) }, foreign_key: :current_deck
+  belongs_to :current_deck, class_name: "Deck", foreign_key: :current_deck_id
 
   accepts_nested_attributes_for :authentications
 
@@ -18,9 +18,5 @@ class User < ActiveRecord::Base
 
   def set_current_deck(deck_id)
     update_attribute(:current_deck_id, deck_id)
-  end
-
-  def current_deck
-    deck
   end
 end
