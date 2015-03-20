@@ -3,5 +3,5 @@
 <% if current_user.decks.empty? %>
   Сначала создайте колоду - <%= link_to "создать", new_deck_path %>
 <% else %>
-  <%= render "form" %>
+  <%= render "form", deck: @deck, card: @card %>
 <% end %>
