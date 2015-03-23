@@ -8,7 +8,7 @@ class Card < ActiveRecord::Base
 
   scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
-  validates :original_text, :translated_text, presence: true
+  validates :original_text, :translated_text, :deck_id, presence: true
   validate :original_and_translated_not_equal
 
   before_create :set_review_date

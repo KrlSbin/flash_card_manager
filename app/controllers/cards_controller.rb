@@ -7,7 +7,6 @@ class CardsController < ApplicationController
 
   def new
     @card = @deck.cards.new
-    @card.user_id = current_user.id
   end
 
   def create
@@ -48,7 +47,12 @@ class CardsController < ApplicationController
   end
 
   def set_deck
-    @deck = current_user.decks.find(params[:deck_id])
+    if current_user.decks.empty?
+      flash[:notice] = "Сначала создайте колоду"
+      redirect_to new_deck_path
+    else
+      @deck = current_user.decks.find(params[:deck_id])
+    end
   end
 
   def set_card
