@@ -20,7 +20,7 @@ describe "Trainer page" do
     visit root_path
     expect(page).to have_content card.original_text
   end
-  
+
   it "show unreviewed card from current deck" do
     user = create(:user)
     login_user(user.email, "1234")
