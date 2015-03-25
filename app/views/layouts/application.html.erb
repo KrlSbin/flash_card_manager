@@ -32,15 +32,24 @@
       <ul class="navigation-links">
 	<% if current_user %>
 	  <% if current_user.decks.empty? %>
-	    <li><%= link_to "Добавить колоду", new_deck_path %></li>
+	    <li>
+	      <%= link_to "Добавить колоду", new_deck_path %>
+	    </li>
 	  <% else %>
-            <li><%= link_to "Добавить колоду", new_deck_path %></li>
-            <li><%= link_to "Все карточки пользователя",
-		    user_cards_path(current_user) %></li>
-	    <li><%= link_to "Все колоды пользователя", decks_path %></li>
+	    <li>
+	      <%= link_to "Добавить колоду", new_deck_path %>
+	    </li>
+	    <li>
+	      <%= link_to "Все карточки пользователя", cards_path %>
+	    </li>
+	    <li>
+	      <%= link_to "Все колоды пользователя", decks_path %>
+	    </li>
 	  <% end %>
 	<% end %>
-	<li><%= link_to "Главная", root_path %></li>
+	<li>
+  	  <%= link_to "Главная", root_path %>
+	</li>
       </ul>
     </header>
 

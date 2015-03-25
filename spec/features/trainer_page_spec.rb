@@ -20,6 +20,44 @@ describe "Trainer page" do
     visit root_path
     expect(page).to have_content card.original_text
   end
+  
+  it "show unreviewed card from current deck" do
+    user = create(:user)
+    login_user(user.email, "1234")
+    click_link "Добавить колоду"
+    fill_in "deck_name", with: "current"
+    click_button "Create Deck"
+    click_link "Назад"
+    click_link "Добавить карту"
+    fill_in "card_original_text", with: "Sea"
+    fill_in "card_translated_text", with: "Море"
+    click_button "Create Card"
+    click_link "Назад"
+    click_link "Все колоды пользователя"
+    click_link "Сделать текущей"
+    visit root_path
+    expect(page).to have_content "Sea"
+  end
+
+  it "show unreviewed card from current deck and get incorrect translation" do
+    user = create(:user)
+    login_user(user.email, "1234")
+    click_link "Добавить колоду"
+    fill_in "deck_name", with: "current"
+    click_button "Create Deck"
+    click_link "Назад"
+    click_link "Добавить карту"
+    fill_in "card_original_text", with: "Sea"
+    fill_in "card_translated_text", with: "Море"
+    click_button "Create Card"
+    click_link "Назад"
+    click_link "Все колоды пользователя"
+    click_link "Сделать текущей"
+    visit root_path
+    fill_in "Перевод:", with: "Мор"
+    click_button "Проверить"
+    expect(page).to have_content "Неправильно!"
+  end
 
   it "show unreviewed card from current deck and get correct translation" do
     user = create(:user)
@@ -36,10 +74,6 @@ describe "Trainer page" do
     click_link "Все колоды пользователя"
     click_link "Сделать текущей"
     visit root_path
-    expect(page).to have_content "Sea"
-    fill_in "Перевод:", with: "Мор"
-    click_button "Проверить"
-    expect(page).to have_content "Неправильно!"
     fill_in "Перевод:", with: "Море"
     click_button "Проверить"
     expect(page).to have_content "Правильно!"

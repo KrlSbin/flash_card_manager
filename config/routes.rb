@@ -6,15 +6,10 @@ Rails.application.routes.draw do
   put "trainer", to: "trainer#check_translation"
 
   get "set_current_deck", to: "users#set_current_deck"
+
   resources :user_sessions
-
-  resources :users do
-    resources :cards, only: [:index]
-  end
-
-  resources :users do
-    resources :decks, only: [:index]
-  end
+  resources :cards, only: [:index]
+  resources :users
 
   resources :decks do
     resources :cards
