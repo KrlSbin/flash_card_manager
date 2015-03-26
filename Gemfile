@@ -21,6 +21,9 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'posix-spawn'
 
+group :production do
+  gem 'rails_12factor'
+end
 group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
