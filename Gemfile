@@ -31,4 +31,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'travis-lint'
   gem 'database_cleaner'
+  gem 'debase'
+  gem 'debase-ruby_core_source'
+end
+
+group :development do
+  gem 'ruby-debug-ide'
 end
