@@ -32,12 +32,14 @@ class Card < ActiveRecord::Base
       return true
     else
       case attempt
-        when 0
-          update_attributes(attempt: 1)
-        when 1
-          update_attributes(attempt: 2)
-        when 2
-          update_attributes(review_date: Time.now + 12.hours, box_number: 1, attempt: 0)
+      when 0
+        update_attributes(attempt: 1)
+      when 1
+        update_attributes(attempt: 2)
+      when 2
+        update_attributes(review_date: Time.now + 12.hours,
+                          box_number: 1,
+                          attempt: 0)
       end
       return false
     end
