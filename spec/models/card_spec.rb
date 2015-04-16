@@ -93,7 +93,6 @@ describe Card do
     expect(card.box_number).to eql(original_box_number + 1)
   end
 
-
   it "update review date if translation is correct for box 5" do
     card = Card.create(original_text: "Word",
                        translated_text: "Слово",
