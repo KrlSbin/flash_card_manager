@@ -154,7 +154,6 @@ describe Card do
     card = Card.create(original_text: "Word",
                        translated_text: "Слово",
                        deck_id: 1)
-    original_attempt = card.attempt
     3.times { card.check_translation("Словоу") }
     expect(card.attempt).to eql(0)
   end
