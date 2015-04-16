@@ -11,7 +11,7 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :deck_id, presence: true
   validate :original_and_translated_not_equal
 
-  before_create :set_review_date, :set_box_number
+  before_create :set_review_date, :set_box_number, :set_attempt
 
   def check_translation(translation)
     if translated_text == translation
@@ -29,6 +29,7 @@ class Card < ActiveRecord::Base
       when 6
         update_attributes(review_date: Time.now + 1.month)
       end
+      update_attributes(attempt: 0)
       return true
     else
       case attempt
@@ -53,6 +54,10 @@ class Card < ActiveRecord::Base
 
   def set_box_number
     self.box_number = 1
+  end
+
+  def set_attempt
+    self.attempt = 0
   end
 
   def original_and_translated_not_equal
