@@ -39,7 +39,7 @@ class Card < ActiveRecord::Base
       update_attributes(review_date: Time.now + 1.month)
     end
     update_attributes(attempt: 0)
-    return true
+    true
   end
 
   def translation_is_incorrect
@@ -53,7 +53,7 @@ class Card < ActiveRecord::Base
                         box_number: 1,
                         attempt: 0)
     end
-    return false
+    false
   end
 
   def set_default_attributes
