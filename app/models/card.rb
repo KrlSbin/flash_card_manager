@@ -25,18 +25,18 @@ class Card < ActiveRecord::Base
 
   def translation_is_correct
     case box_number
-      when 1
-        update_attributes(review_date: Time.now + 12.hours, box_number: 2)
-      when 2
-        update_attributes(review_date: Time.now + 3.days, box_number: 3)
-      when 3
-        update_attributes(review_date: Time.now + 7.days, box_number: 4)
-      when 4
-        update_attributes(review_date: Time.now + 14.days, box_number: 5)
-      when 5
-        update_attributes(review_date: Time.now + 1.month, box_number: 6)
-      when 6
-        update_attributes(review_date: Time.now + 1.month)
+    when 1
+      update_attributes(review_date: Time.now + 12.hours, box_number: 2)
+    when 2
+      update_attributes(review_date: Time.now + 3.days, box_number: 3)
+    when 3
+      update_attributes(review_date: Time.now + 7.days, box_number: 4)
+    when 4
+      update_attributes(review_date: Time.now + 14.days, box_number: 5)
+    when 5
+      update_attributes(review_date: Time.now + 1.month, box_number: 6)
+    when 6
+      update_attributes(review_date: Time.now + 1.month)
     end
     update_attributes(attempt: 0)
     return true
@@ -44,14 +44,14 @@ class Card < ActiveRecord::Base
 
   def translation_is_incorrect
     case attempt
-      when 0
-        update_attributes(attempt: 1)
-      when 1
-        update_attributes(attempt: 2)
-      when 2
-        update_attributes(review_date: Time.now + 12.hours,
-                          box_number: 1,
-                          attempt: 0)
+    when 0
+      update_attributes(attempt: 1)
+    when 1
+      update_attributes(attempt: 2)
+    when 2
+      update_attributes(review_date: Time.now + 12.hours,
+                        box_number: 1,
+                        attempt: 0)
     end
     return false
   end
