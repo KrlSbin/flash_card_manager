@@ -15,43 +15,41 @@ class Card < ActiveRecord::Base
 
   def check_translation(translation)
     if translated_text == translation
-      translation_is_correct
+      update_review_date
     else
-      translation_is_incorrect
+      update_attempt_count
     end
   end
 
   private
 
-  def translation_is_correct
+  def new_review_date
     case box_number
     when 1
-      update_attributes(review_date: Time.now + 12.hours, box_number: 2)
+      Time.now + 12.hours
     when 2
-      update_attributes(review_date: Time.now + 3.days, box_number: 3)
+      Time.now + 3.days
     when 3
-      update_attributes(review_date: Time.now + 7.days, box_number: 4)
+      Time.now + 7.days
     when 4
-      update_attributes(review_date: Time.now + 14.days, box_number: 5)
-    when 5
-      update_attributes(review_date: Time.now + 1.month, box_number: 6)
-    when 6
-      update_attributes(review_date: Time.now + 1.month)
+      Time.now + 14.days
+    else
+      Time.now + 1.month
     end
-    update_attributes(attempt: 0)
+  end
+
+  def update_review_date
+    update_attributes(attempt: 0, review_date: new_review_date, box_number: [box_number + 1, 6].min)
     true
   end
 
-  def translation_is_incorrect
-    case attempt
-    when 0
-      update_attributes(attempt: 1)
-    when 1
-      update_attributes(attempt: 2)
-    when 2
+  def update_attempt_count
+    if attempt == 2
       update_attributes(review_date: Time.now + 12.hours,
                         box_number: 1,
                         attempt: 0)
+    else
+      increment!(:attempt)
     end
     false
   end
