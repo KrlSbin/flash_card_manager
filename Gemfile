@@ -38,3 +38,5 @@ end
 group :development do
   gem 'ruby-debug-ide'
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
