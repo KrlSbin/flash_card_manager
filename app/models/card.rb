@@ -39,7 +39,9 @@ class Card < ActiveRecord::Base
   end
 
   def update_review_date
-    update_attributes(attempt: 0, review_date: new_review_date, box_number: [box_number + 1, 6].min)
+    update_attributes(attempt: 0,
+                      review_date: new_review_date,
+                      box_number: [box_number + 1, 6].min)
     true
   end
 
