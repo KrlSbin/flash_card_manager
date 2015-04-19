@@ -42,7 +42,6 @@ class Card < ActiveRecord::Base
     update_attributes(attempt: 0,
                       review_date: new_review_date,
                       box_number: [box_number + 1, 6].min)
-    true
   end
 
   def update_attempt_count
