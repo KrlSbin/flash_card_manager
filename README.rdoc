@@ -2,8 +2,6 @@
 
 {<img src="https://travis-ci.org/NoPos/flash_card_manager.svg?branch=request_specs" alt="Build Status" />}[https://travis-ci.org/NoPos/flash_card_manager]
 
-<tt>rake doc:app</tt>.
-
 {<img src="https://codeclimate.com/repos/5533f6abe30ba028940080c8/badges/8ec490691882f5bbaf72/gpa.svg" />}[https://codeclimate.com/repos/5533f6abe30ba028940080c8/feed]
 
 {<img src="https://codeclimate.com/repos/5533f6abe30ba028940080c8/badges/8ec490691882f5bbaf72/coverage.svg" />}[https://codeclimate.com/repos/5533f6abe30ba028940080c8/feed]
