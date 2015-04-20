@@ -5,3 +5,7 @@ rvm:
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c "create database travis_ci_test;" -U postgres
+
+addons:
+    code_climate:
+        repo_token: c1c71483095197397299ccf97845e2e959a5d959261e970b9784e188a1678f5f
