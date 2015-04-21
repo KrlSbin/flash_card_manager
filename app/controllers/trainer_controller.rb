@@ -11,9 +11,17 @@ class TrainerController < ApplicationController
 
   def check_translation
     @card = Card.find(params[:card_id])
+    user_translation = params[:translated_text]
+    right_translation = @card.translated_text
+    original = @card.original_text
 
-    if @card.check_translation(params[:translated_text])
+    if @card.check_translation(user_translation)
       flash[:notice] = "Правильно!"
+    elsif @card.lev_dist(user_translation) == 1
+      flash[:notice] = "Очепятка! \
+                        Вы ввели #{user_translation}. \
+                        Правильный перевод \"#{original}\" \
+                        - \"#{right_translation}\"!"
     else
       flash[:notice] = "Неправильно!"
     end

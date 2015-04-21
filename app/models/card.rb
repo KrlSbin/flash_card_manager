@@ -13,12 +13,16 @@ class Card < ActiveRecord::Base
 
   before_create :set_default_attributes
 
-  def check_translation(translation)
-    if translated_text == translation
+  def check_translation(user_translation)
+    if translated_text == user_translation
       update_review_date
     else
       update_attempt_count
     end
+  end
+
+  def lev_dist(something)
+    DamerauLevenshtein.distance(something, translated_text)
   end
 
   private
