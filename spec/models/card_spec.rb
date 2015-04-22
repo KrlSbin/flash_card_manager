@@ -15,13 +15,13 @@ describe Card do
   it "check positive translation" do
     card = Card.create(original_text: "Word",
                        translated_text: "Слово", deck_id: 1)
-    expect(card.check_translation("Слово")).to be true
+    expect(card.check_translation("Слово")[:success]).to be true
   end
 
   it "check negative translation" do
     card = Card.create(original_text: "Word",
                        translated_text: "Слово", deck_id: 1)
-    expect(card.check_translation("Словечки")).to be false
+    expect(card.check_translation("Словечки")[:success]).to be false
   end
 
   it "update review date if translation is correct" do
