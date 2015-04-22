@@ -14,15 +14,19 @@ class Card < ActiveRecord::Base
   before_create :set_default_attributes
 
   def check_translation(user_translation)
+    typos_count = levenshtein_distance(user_translation)
+
     if translated_text == user_translation
       update_review_date
+      { success: true, typos_count: typos_count }
     else
       update_attempt_count
+      { success: false, typos_count: typos_count }
     end
   end
 
-  def lev_dist(something)
-    DamerauLevenshtein.distance(something, translated_text)
+  def levenshtein_distance(user_translation)
+    DamerauLevenshtein.distance(user_translation, translated_text)
   end
 
   private
