@@ -21,6 +21,7 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'posix-spawn'
 gem 'damerau-levenshtein', '~> 1.0.3'
+gem 'whenever', :require => false
 
 group :production do
   gem 'rails_12factor'

@@ -29,6 +29,16 @@ class Card < ActiveRecord::Base
     DamerauLevenshtein.distance(user_translation, translated_text)
   end
 
+  def self.mail_cards_to_review
+    users = User.all
+
+    users.each do |user|
+      if user.cards.for_review.first.present?
+        CardMailer.cards_to_review(user).deliver
+      end
+    end
+  end
+
   private
 
   def new_review_date
