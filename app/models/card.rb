@@ -30,12 +30,8 @@ class Card < ActiveRecord::Base
   end
 
   def self.mail_cards_to_review
-    users = User.all
-
-    users.each do |user|
-      if user.cards.for_review.first.present?
-        CardMailer.cards_to_review(user).deliver
-      end
+    User.joins(:cards).where("review_date <= ?", Time.now).uniq.each do |user|
+      CardMailer.cards_to_review(user).deliver
     end
   end
 
