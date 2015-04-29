@@ -1,9 +1,8 @@
 class CardMailer < ActionMailer::Base
-  default from: "goldpatch@mail.ru"
-
+  default from: ENV["MAILER_ADDR"]
   def cards_to_review(user)
     @user = user
-    @url = "https://flashcardmanage.herokuapp.com/"
+    @url = ENV["TRAINER_URL"]
     mail(to: @user.email, subject: "You have new cards for review!")
   end
 end
