@@ -11,7 +11,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'spring',        group: :development
 gem 'execjs'
 gem 'therubyracer'
 gem 'simple_form'
@@ -38,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'spring'
   gem 'ruby-debug-ide'
 end
 
