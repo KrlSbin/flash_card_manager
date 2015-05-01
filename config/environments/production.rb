@@ -62,24 +62,22 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  Rails.application.configure do
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.default_url_options = {
-        host: 'http://flashcardmanage.herokuapp.com/'
-    }
-    config.action_mailer.smtp_settings = {
-        address: ENV["MAIL_ADDRESS"],
-        port: ENV["MAIL_PORT"],
-        user_name: ENV["MAIL_USER_NAME"],
-        password: ENV["MAIL_PASSWORD"],
-        domain: ENV["MAIL_DOMAIN"],
-        authentication: :login,
-        enable_starttls_auto: false,
-        tls: true
-    }
-  end
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = {
+      host: 'http://flashcardmanage.herokuapp.com/'
+  }
+  config.action_mailer.smtp_settings = {
+      address: ENV["MAIL_ADDRESS"],
+      port: ENV["MAIL_PORT"],
+      user_name: ENV["MAIL_USER_NAME"],
+      password: ENV["MAIL_PASSWORD"],
+      domain: ENV["MAIL_DOMAIN"],
+      authentication: :login,
+      enable_starttls_auto: false,
+      tls: true
+  }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
