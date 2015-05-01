@@ -160,7 +160,8 @@ describe Card do
 
   it "not update review date if translation is not correct" do
     card = Card.create(original_text: "Word",
-                       translated_text: "Слово", deck_id: 1)
+                       translated_text: "Слово",
+                       deck_id: 1)
     original_review_date = card.review_date
     card.check_translation("Словечко")
     expect(card.review_date).to eql(original_review_date)
@@ -169,7 +170,8 @@ describe Card do
   it "send notification about new card to review" do
     user = create(:user)
     user.cards.create(original_text: "Word",
-                     translated_text: "Слово", deck_id: 1)
-    expect{Card.mail_cards_to_review}.to change { ActionMailer::Base.deliveries.count }.by(1)
+                      translated_text: "Слово",
+                      deck_id: 1)
+    expect { Card.mail_cards_to_review }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 end
