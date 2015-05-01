@@ -165,4 +165,11 @@ describe Card do
     card.check_translation("Словечко")
     expect(card.review_date).to eql(original_review_date)
   end
+
+  it "send notification about new card to review" do
+    user = create(:user)
+    user.cards.create(original_text: "Word",
+                     translated_text: "Слово", deck_id: 1)
+    expect{Card.mail_cards_to_review}.to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 end
