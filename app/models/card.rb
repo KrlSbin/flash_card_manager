@@ -31,7 +31,7 @@ class Card < ActiveRecord::Base
 
   def self.mail_cards_to_review
     User.joins(:cards).where("review_date <= ?", Time.now).uniq.each do |user|
-      CardMailer.cards_to_review(user).deliver
+      CardMailer.cards_to_review(user).deliver_now
     end
   end
 

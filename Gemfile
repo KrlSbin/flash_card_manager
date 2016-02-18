@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '~> 4.2'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -25,6 +25,7 @@ gem 'whenever', :require => false
 group :production do
   gem 'rails_12factor'
 end
+
 group :development, :test do
   gem 'capybara'
   gem 'poltergeist'

@@ -7,7 +7,7 @@ describe CardMailer do
     @user = create(:user)
     @user.cards.create(original_text: "Word",
                        translated_text: "Слово", deck_id: 1)
-    CardMailer.cards_to_review(@user).deliver
+    CardMailer.cards_to_review(@user).deliver_now
   end
 
   after (:each) do
