@@ -43,4 +43,8 @@ group :development do
   gem 'ruby-debug-ide'
 end
 
+group :test do
+  gem 'shoulda-matchers'
+end
+
 gem "codeclimate-test-reporter", group: :test, require: nil
