@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id               :integer          not null, primary key
+#  email            :string
+#  crypted_password :string
+#  created_at       :datetime
+#  updated_at       :datetime
+#  salt             :string
+#  current_deck_id  :integer
+#
+
 require "rails_helper"
 
 describe User do

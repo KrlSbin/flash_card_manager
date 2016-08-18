@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  id                      :integer          not null, primary key
+#  original_text           :text
+#  translated_text         :text
+#  review_date             :datetime
+#  created_at              :datetime
+#  updated_at              :datetime
+#  user_id                 :integer
+#  card_photo_file_name    :string
+#  card_photo_content_type :string
+#  card_photo_file_size    :integer
+#  card_photo_updated_at   :datetime
+#  deck_id                 :integer
+#  box_number              :integer
+#  attempt                 :integer
+#
+
 class Card < ActiveRecord::Base
   belongs_to :deck
   belongs_to :user

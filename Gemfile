@@ -35,6 +35,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'debase'
   gem 'debase-ruby_core_source'
+  gem 'annotate'
 end
 
 group :development do
