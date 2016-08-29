@@ -6,7 +6,11 @@
 #  name       :string
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
+#  user_id    :integer          indexed
+#
+# Indexes
+#
+#  index_decks_on_user_id  (user_id)
 #
 
 class Deck < ActiveRecord::Base

@@ -8,14 +8,19 @@
 #  review_date             :datetime
 #  created_at              :datetime
 #  updated_at              :datetime
-#  user_id                 :integer
+#  user_id                 :integer          indexed
 #  card_photo_file_name    :string
 #  card_photo_content_type :string
 #  card_photo_file_size    :integer
 #  card_photo_updated_at   :datetime
-#  deck_id                 :integer
+#  deck_id                 :integer          indexed
 #  box_number              :integer
 #  attempt                 :integer
+#
+# Indexes
+#
+#  index_cards_on_deck_id  (deck_id)
+#  index_cards_on_user_id  (user_id)
 #
 
 require "rails_helper"

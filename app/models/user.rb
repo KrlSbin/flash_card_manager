@@ -3,12 +3,16 @@
 # Table name: users
 #
 #  id               :integer          not null, primary key
-#  email            :string
+#  email            :string           indexed
 #  crypted_password :string
 #  created_at       :datetime
 #  updated_at       :datetime
 #  salt             :string
 #  current_deck_id  :integer
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
 #
 
 class User < ActiveRecord::Base
