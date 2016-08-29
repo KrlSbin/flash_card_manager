@@ -3,11 +3,12 @@ require "rails_helper"
 describe CardMailer do
   subject { ActionMailer::Base.deliveries }
 
-  before (:each) do
-    @user = create(:user)
-    @user.cards.create(original_text: "Word",
-                       translated_text: "Слово", deck_id: 1)
-    CardMailer.cards_to_review(@user).deliver_now
+  let(:password){ "password" }
+  let!(:user) { FactoryGirl.create(:user, password: password, password_confirmation: password) }
+
+  before do
+    user.cards.create(original_text: "Word", translated_text: "Слово", deck_id: 1)
+    CardMailer.cards_to_review(user).deliver_now
   end
 
   after (:each) do
@@ -20,7 +21,7 @@ describe CardMailer do
     end
 
     it "renders the receiver email" do
-      expect(subject.first.to).to eq([@user.email])
+      expect(subject.first.to).to eq([user.email])
     end
 
     it "should set the correct subject" do

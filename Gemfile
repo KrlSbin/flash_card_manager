@@ -27,10 +27,6 @@ group :production do
 end
 
 group :development, :test do
-  gem 'capybara'
-  gem 'poltergeist'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
   gem 'travis-lint'
   gem 'database_cleaner'
   gem 'debase'
@@ -44,7 +40,14 @@ group :development do
 end
 
 group :test do
+  gem 'connection_pool'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'selenium-webdriver'
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

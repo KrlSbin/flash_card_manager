@@ -1,81 +1,31 @@
 require "rails_helper"
 
-describe "Authentication procedure" do
-  it "successful login/logout to portal" do
-    user = create(:user)
-    login_user(user.email, "1234")
-    expect(page).to have_content "Вы залогинены"
-    click_link "Выйти"
-    expect(page).to have_content "Вы вышли!"
-  end
+describe "Authentication procedure", type: :feature, js: true do
+  let(:user_password) { "password" }
 
-  it "unsuccessful login to portal with wrong password" do
-    user = create(:user)
-    login_user(user.email, "123")
-    expect(page).to have_content "Логин неудался"
-  end
+  context "existing user" do
+    let!(:user) { FactoryGirl.create(:user, password: user_password, password_confirmation: user_password) }
 
-  it "successful new user registration and autologin" do
-    visit root_path
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password", with: "1234"
-    fill_in "Password confirmation", with: "1234"
-    click_button "Create User"
-    expect(page).to have_content "Пользователь создан."
-  end
+    context "correct credentials" do
+      include_context :login_user do
+        let(:password) { user_password }
+      end
 
-  it "unsuccessful new user registration with short password" do
-    visit root_path
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password", with: "12"
-    fill_in "Password confirmation", with: "12"
-    click_button "Create User"
-    expect(page).to have_content "Password is too short"
-  end
+      it "successful login/logout to portal" do
+        expect(page).to have_content "Вы залогинены"
+        click_link "Выйти"
+        expect(page).to have_content "Вы вышли!"
+      end
+    end
 
-  it "unsuccessful new user registration with already used email" do
-    visit root_path
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password", with: "1234"
-    fill_in "Password confirmation", with: "1234"
-    click_button "Create User"
-    click_link "Выйти"
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password", with: "1234"
-    fill_in "Password confirmation", with: "1234"
-    click_button "Create User"
-    expect(page).to have_content "Email has already been taken"
-  end
+    context "invalid credentials" do
+      include_context :login_user do
+        let(:password) { "some_invalid_password" }
+      end
 
-  it "unsuccessful new user registration with empty password" do
-    visit root_path
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password confirmation", with: "1234"
-    click_button "Create User"
-    expect(page).to have_content "Password is too short"
-  end
-
-  it "unsuccessful new user registration with empty password confirmation" do
-    visit root_path
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password", with: "1234"
-    click_button "Create User"
-    expect(page).to have_content "Password confirmation doesn't match Password"
-  end
-
-  it "Usuccessful new user registration with wrong password confirmation" do
-    visit root_path
-    click_link "Регистрация"
-    fill_in "Email", with: "1234"
-    fill_in "Password", with: "1234"
-    fill_in "Password confirmation", with: "12345"
-    click_button "Create User"
-    expect(page).to have_content "Password confirmation doesn't match Password"
+      it "unsuccessful login to portal with wrong password" do
+        expect(page).to have_content "Логин неудался"
+      end
+    end
   end
 end

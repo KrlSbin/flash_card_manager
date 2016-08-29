@@ -20,7 +20,7 @@
 
 require "rails_helper"
 
-describe Card do
+describe Card, type: :model do
   it "not save instance with identical original and translated text fields" do
     card = Card.new(original_text: "Word", translated_text: "Word", deck_id: 1)
     expect(card.valid?).to be false
@@ -188,7 +188,7 @@ describe Card do
   end
 
   it "send notification about new card to review" do
-    user = create(:user)
+    user = FactoryGirl.create(:user)
     user.cards.create(original_text: "Word",
                       translated_text: "Слово",
                       deck_id: 1)
