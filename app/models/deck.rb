@@ -6,7 +6,7 @@
 #  name       :string
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer          indexed
+#  user_id    :integer
 #
 # Indexes
 #

@@ -16,8 +16,6 @@ gem 'therubyracer'
 gem 'simple_form'
 gem 'sorcery', '~> 0.9.0'
 gem 'figaro'
-gem 'paperclip'
-gem 'aws-sdk', '< 2.0'
 gem 'posix-spawn'
 gem 'damerau-levenshtein', '~> 1.0.3'
 gem 'whenever', :require => false

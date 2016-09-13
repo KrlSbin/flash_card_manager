@@ -9,10 +9,6 @@
 #  created_at              :datetime
 #  updated_at              :datetime
 #  user_id                 :integer
-#  card_photo_file_name    :string
-#  card_photo_content_type :string
-#  card_photo_file_size    :integer
-#  card_photo_updated_at   :datetime
 #  deck_id                 :integer
 #  box_number              :integer
 #  attempt                 :integer

@@ -2,20 +2,16 @@
 #
 # Table name: cards
 #
-#  id                      :integer          not null, primary key
-#  original_text           :text
-#  translated_text         :text
-#  review_date             :datetime
-#  created_at              :datetime
-#  updated_at              :datetime
-#  user_id                 :integer          indexed
-#  card_photo_file_name    :string
-#  card_photo_content_type :string
-#  card_photo_file_size    :integer
-#  card_photo_updated_at   :datetime
-#  deck_id                 :integer          indexed
-#  box_number              :integer
-#  attempt                 :integer
+#  id              :integer          not null, primary key
+#  original_text   :text
+#  translated_text :text
+#  review_date     :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#  user_id         :integer
+#  deck_id         :integer
+#  box_number      :integer
+#  attempt         :integer
 #
 # Indexes
 #
@@ -26,10 +22,6 @@
 class Card < ActiveRecord::Base
   belongs_to :deck
   belongs_to :user
-  has_attached_file :card_photo, styles: { medium: "360x360" }
-  validates_attachment_content_type :card_photo,
-                                    content_type: ["image/jpg", "image/jpeg",
-                                                   "image/png", "image/gif"]
 
   scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
