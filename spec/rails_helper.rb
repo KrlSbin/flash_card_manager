@@ -1,3 +1,7 @@
+if ENV["RAILS_ENV"] == "test"
+  require 'simplecov'
+  SimpleCov.start
+end
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 ENV["RAILS_ENV"] ||= "test"

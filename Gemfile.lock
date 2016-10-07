@@ -272,6 +272,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   simple_form
+  simplecov
   sorcery (~> 0.9.0)
   spring
   therubyracer

@@ -38,6 +38,7 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', require: true
   gem 'connection_pool'
   gem 'capybara'
   gem 'poltergeist'

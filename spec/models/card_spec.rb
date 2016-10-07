@@ -121,7 +121,7 @@ describe Card, type: :model do
     card.update_attributes(box_number: 5)
     original_review_date = card.review_date
     card.check_translation("Слово")
-    expect(card.review_date.to_s).to eql (original_review_date + 1.month).to_s
+    expect(card.review_date.to_i).to be_within(10800).of((original_review_date + 1.month).to_i)
   end
 
   it "update box number if translation is correct for box 5" do
@@ -141,7 +141,7 @@ describe Card, type: :model do
     card.update_attributes(box_number: 6)
     original_review_date = card.review_date
     card.check_translation("Слово")
-    expect(card.review_date.to_s).to eql (original_review_date + 1.month).to_s
+    expect(card.review_date.to_i).to be_within(10800).of((original_review_date + 1.month).to_i)
   end
 
   it "reset review date after three fail translation attempts" do
