@@ -15,13 +15,15 @@
 #
 
 FactoryGirl.define do
-  factory :deck do
-    name "current deck"
-  end
+  factory :card, class: Card do
+    original_text "sea"
+    translated_text "море"
+    review_date nil
 
-  factory :card do
-    original_text "card"
-    translated_text "карточка"
-    review_date Time.now
+    trait :with_deck do
+      after(:build) do |record|
+        record.deck = create(:deck)
+      end
+    end
   end
 end
