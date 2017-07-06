@@ -1,3 +1,7 @@
+if ENV["RAILS_ENV"] == "test"
+  require 'simplecov'
+  SimpleCov.start
+end
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 ENV["RAILS_ENV"] ||= "test"
@@ -6,6 +10,13 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/poltergeist"
 require "sorcery"
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

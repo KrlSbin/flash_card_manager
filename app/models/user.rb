@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id               :integer          not null, primary key
+#  email            :string
+#  crypted_password :string
+#  created_at       :datetime
+#  updated_at       :datetime
+#  salt             :string
+#  current_deck_id  :integer
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
+#
+
 class User < ActiveRecord::Base
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -10,9 +27,9 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :authentications
 
-  validates :password, length: { minimum: 3 }
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 3 }
+  validates :password, confirmation: true, unless: Proc.new { |a| a.password.blank? }
+  validates :password_confirmation, presence: true, unless: Proc.new { |a| a.password.blank? }
 
   validates :email, uniqueness: true
 

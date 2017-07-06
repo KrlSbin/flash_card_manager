@@ -1,14 +1,31 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  id              :integer          not null, primary key
+#  original_text   :text
+#  translated_text :text
+#  review_date     :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#  user_id         :integer
+#  deck_id         :integer
+#  box_number      :integer
+#  attempt         :integer
+#
+# Indexes
+#
+#  index_cards_on_deck_id  (deck_id)
+#  index_cards_on_user_id  (user_id)
+#
+
 class Card < ActiveRecord::Base
-  belongs_to :deck
-  belongs_to :user
-  has_attached_file :card_photo, styles: { medium: "360x360" }
-  validates_attachment_content_type :card_photo,
-                                    content_type: ["image/jpg", "image/jpeg",
-                                                   "image/png", "image/gif"]
+  belongs_to :deck, class_name: Deck, foreign_key: :deck_id
+  belongs_to :user, class_name: User, foreign_key: :user_id
 
   scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
 
-  validates :original_text, :translated_text, :deck_id, presence: true
+  validates_presence_of :original_text, :translated_text, :deck
   validate :original_and_translated_not_equal
 
   before_create :set_default_attributes
@@ -18,10 +35,10 @@ class Card < ActiveRecord::Base
 
     if translated_text == user_translation
       update_review_date
-      { success: true, typos_count: typos_count }
+      {success: true, typos_count: typos_count}
     else
       update_attempt_count
-      { success: false, typos_count: typos_count }
+      {success: false, typos_count: typos_count}
     end
   end
 
@@ -31,7 +48,7 @@ class Card < ActiveRecord::Base
 
   def self.mail_cards_to_review
     User.joins(:cards).where("review_date <= ?", Time.now).uniq.each do |user|
-      CardMailer.cards_to_review(user).deliver
+      CardMailer.cards_to_review(user).deliver_now
     end
   end
 
@@ -39,16 +56,16 @@ class Card < ActiveRecord::Base
 
   def new_review_date
     case box_number
-    when 1
-      Time.now + 12.hours
-    when 2
-      Time.now + 3.days
-    when 3
-      Time.now + 7.days
-    when 4
-      Time.now + 14.days
-    else
-      Time.now + 1.month
+      when 1
+        Time.now + 12.hours
+      when 2
+        Time.now + 3.days
+      when 3
+        Time.now + 7.days
+      when 4
+        Time.now + 14.days
+      else
+        Time.now + 1.month
     end
   end
 
@@ -76,8 +93,6 @@ class Card < ActiveRecord::Base
   end
 
   def original_and_translated_not_equal
-    if translated_text == original_text
-      errors.add(:translated_text, "не может быть такой же как оригинал")
-    end
+    errors.add(:translated_text, "could not be the same as original.") if translated_text == original_text
   end
 end
