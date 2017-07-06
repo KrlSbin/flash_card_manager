@@ -11,7 +11,7 @@ class DecksController < ApplicationController
     if @deck.save
       redirect_to @deck
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -35,7 +35,7 @@ class DecksController < ApplicationController
     if @deck.update(deck_params)
       redirect_to @deck
     else
-      render "edit"
+      render 'edit'
     end
   end
 

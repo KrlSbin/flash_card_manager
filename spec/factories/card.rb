@@ -16,8 +16,8 @@
 
 FactoryGirl.define do
   factory :card, class: Card do
-    original_text "sea"
-    translated_text "море"
+    original_text 'sea'
+    translated_text 'море'
     review_date nil
 
     trait :with_deck do

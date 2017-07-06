@@ -15,21 +15,21 @@ Rails.application.configure do
 
   # actionmailer configuration
   config.action_mailer.default_url_options = {
-      host: "localhost",
-      port: 3000
+    host: 'localhost',
+    port: 3000
   }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-      address: ENV["MAIL_ADDRESS"],
-      port: ENV["MAIL_PORT"],
-      user_name: ENV["MAIL_USER_NAME"],
-      password: ENV["MAIL_PASSWORD"],
-      domain: ENV["MAIL_DOMAIN"],
-      authentication: :login,
-      enable_starttls_auto: false,
-      tls: true
+    address: ENV['MAIL_ADDRESS'],
+    port: ENV['MAIL_PORT'],
+    user_name: ENV['MAIL_USER_NAME'],
+    password: ENV['MAIL_PASSWORD'],
+    domain: ENV['MAIL_DOMAIN'],
+    authentication: :login,
+    enable_starttls_auto: false,
+    tls: true
   }
 
   # Print deprecation notices to the Rails logger.
