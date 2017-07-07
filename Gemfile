@@ -27,8 +27,6 @@ end
 group :development, :test do
   gem 'travis-lint'
   gem 'database_cleaner'
-  gem 'debase'
-  gem 'debase-ruby_core_source'
   gem 'annotate'
   gem 'rubocop', '0.47.1'
 end
