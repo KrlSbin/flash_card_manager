@@ -23,7 +23,7 @@ class Card < ActiveRecord::Base
   belongs_to :deck, class_name: Deck, foreign_key: :deck_id
   belongs_to :user, class_name: User, foreign_key: :user_id
 
-  scope :for_review, -> { where("review_date <= ?", Time.now).order("RANDOM()") }
+  scope :for_review, -> { where('review_date <= ?', Time.now).order('RANDOM()') }
 
   validates_presence_of :original_text, :translated_text, :deck
   validate :original_and_translated_not_equal
@@ -35,10 +35,10 @@ class Card < ActiveRecord::Base
 
     if translated_text == user_translation
       update_review_date
-      {success: true, typos_count: typos_count}
+      { success: true, typos_count: typos_count }
     else
       update_attempt_count
-      {success: false, typos_count: typos_count}
+      { success: false, typos_count: typos_count }
     end
   end
 
@@ -47,7 +47,7 @@ class Card < ActiveRecord::Base
   end
 
   def self.mail_cards_to_review
-    User.joins(:cards).where("review_date <= ?", Time.now).uniq.each do |user|
+    User.joins(:cards).where('review_date <= ?', Time.now).uniq.each do |user|
       CardMailer.cards_to_review(user).deliver_now
     end
   end
@@ -93,6 +93,6 @@ class Card < ActiveRecord::Base
   end
 
   def original_and_translated_not_equal
-    errors.add(:translated_text, "could not be the same as original.") if translated_text == original_text
+    errors.add(:translated_text, 'could not be the same as original.') if translated_text == original_text
   end
 end

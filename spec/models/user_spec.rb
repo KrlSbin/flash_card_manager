@@ -15,7 +15,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 
-require "rails_helper"
+require 'rails_helper'
 
 describe User, type: :model do
   context 'validations' do
@@ -23,7 +23,7 @@ describe User, type: :model do
     context 'simple validations' do
       it { is_expected.to validate_uniqueness_of(:email) }
       it { is_expected.to validate_length_of(:password), minimum: 3 } # probably does not work
-      it { is_expected.to validate_presence_of(:password).with_message("is too short (minimum is 3 characters)") }
+      it { is_expected.to validate_presence_of(:password).with_message('is too short (minimum is 3 characters)') }
     end
 
     context 'extended check' do
@@ -36,38 +36,38 @@ describe User, type: :model do
 
       subject { User.new(email: email, password: password, password_confirmation: password_confirmation) }
 
-      context "when password too short" do
+      context 'when password too short' do
         let(:email) { 'kir@mail.com' }
         let(:password) { '12' }
         let(:password_confirmation) { '12' }
 
         it_behaves_like :returns_validation_message do
-          let(:field){ :password }
-          let(:message){ "is too short (minimum is 3 characters)" }
+          let(:field) { :password }
+          let(:message) { 'is too short (minimum is 3 characters)' }
         end
       end
 
-      context "user email already exist" do
+      context 'user email already exist' do
         let(:email) { 'kir@mail.com' }
         let(:password) { 'password' }
         let(:password_confirmation) { 'password' }
         let!(:user) { User.create(email: email, password: password, password_confirmation: password_confirmation) }
 
         it_behaves_like :returns_validation_message do
-          let(:field){ :email }
-          let(:message){ "has already been taken" }
+          let(:field) { :email }
+          let(:message) { 'has already been taken' }
         end
       end
 
-      context "password confirmation does not match with password" do
+      context 'password confirmation does not match with password' do
         let(:email) { 'kir@mail.com' }
         let(:password) { 'password' }
         let(:password_confirmation) { 'password_confirmation' }
         let!(:user) { User.create(email: email, password: password, password_confirmation: password_confirmation) }
 
         it_behaves_like :returns_validation_message do
-          let(:field){ :password_confirmation }
-          let(:message){ "doesn't match Password" }
+          let(:field) { :password_confirmation }
+          let(:message) { "doesn't match Password" }
         end
       end
     end

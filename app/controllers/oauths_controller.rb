@@ -17,7 +17,7 @@ class OauthsController < ApplicationController
         auto_login(@user)
         redirect_to root_path, notice: "Вы вошли через #{provider.titleize}!"
       rescue
-        redirect_to root_path, alert: 
+        redirect_to root_path, alert:
 	  "Неудачный вход через #{provider.titleize}!"
       end
     end

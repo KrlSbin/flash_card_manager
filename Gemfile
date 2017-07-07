@@ -18,7 +18,7 @@ gem 'sorcery', '~> 0.9.0'
 gem 'figaro'
 gem 'posix-spawn'
 gem 'damerau-levenshtein', '~> 1.0.3'
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 group :production do
   gem 'rails_12factor'
@@ -30,6 +30,7 @@ group :development, :test do
   gem 'debase'
   gem 'debase-ruby_core_source'
   gem 'annotate'
+  gem 'rubocop', '0.47.1'
 end
 
 group :development do
@@ -49,4 +50,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'codeclimate-test-reporter', group: :test, require: nil

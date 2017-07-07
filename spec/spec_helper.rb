@@ -1,6 +1,8 @@
-require "capybara/rspec"
-require "factory_girl_rails"
-require "database_cleaner"
+# frozen_string_literal: true
+
+require 'capybara/rspec'
+require 'factory_girl_rails'
+require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
 # Capybara.javascript_driver = :selenium
 

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         auto_login(@user)
-        format.html { redirect_to root_path, notice: "Пользователь создан." }
+        format.html { redirect_to root_path, notice: 'Пользователь создан.' }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to current_user, notice: "Профиль обновлен." }
+        format.html { redirect_to current_user, notice: 'Профиль обновлен.' }
         format.json { render :show, status: :ok, location: current_user }
       else
         format.html { render :edit }
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "Пользователь удален." }
+      format.html { redirect_to users_url, notice: 'Пользователь удален.' }
       format.json { head :no_content }
     end
   end

@@ -66,17 +66,17 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = {
-      host: ENV["PRODUCTION_HOST"]
+    host: ENV['PRODUCTION_HOST']
   }
   config.action_mailer.smtp_settings = {
-      address: ENV["MAIL_ADDRESS"],
-      port: ENV["MAIL_PORT"],
-      user_name: ENV["MAIL_USER_NAME"],
-      password: ENV["MAIL_PASSWORD"],
-      domain: ENV["MAIL_DOMAIN"],
-      authentication: :login,
-      enable_starttls_auto: false,
-      tls: true
+    address: ENV['MAIL_ADDRESS'],
+    port: ENV['MAIL_PORT'],
+    user_name: ENV['MAIL_USER_NAME'],
+    password: ENV['MAIL_PASSWORD'],
+    domain: ENV['MAIL_DOMAIN'],
+    authentication: :login,
+    enable_starttls_auto: false,
+    tls: true
   }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

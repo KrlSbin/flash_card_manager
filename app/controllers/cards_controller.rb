@@ -15,7 +15,7 @@ class CardsController < ApplicationController
     if @card.save
       redirect_to [@deck, @card]
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
     if @card.update(card_params)
       redirect_to [@deck, @card]
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -48,7 +48,7 @@ class CardsController < ApplicationController
 
   def set_deck
     if current_user.decks.empty?
-      flash[:notice] = "Сначала создайте колоду"
+      flash[:notice] = 'Сначала создайте колоду'
       redirect_to new_deck_path
     else
       @deck = current_user.decks.find(params[:deck_id])
