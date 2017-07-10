@@ -55,9 +55,8 @@ describe Card, type: :model do
   end
 
   describe '#check_translation' do
-    before { @card = FactoryGirl.create(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
+    let!(:card) { FactoryGirl.create(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
 
-    let!(:card) { @card }
     let!(:original_review_date) { card.review_date }
 
     subject { card.reload.check_translation(check_translation_word) }
@@ -158,10 +157,10 @@ describe Card, type: :model do
       it 'should increment attempt attempt count' do
         expect { subject }.to change { card.attempt }.by(1)
       end
-      # todo
-      # it 'should not update review date' do
-      #   expect { subject }.not_to change { card.review_date }
-      # end
+
+      it 'should not update review date' do
+        expect { subject }.not_to change { card.review_date.to_s(:db) }
+      end
 
       context 'after 3 fail attempts' do
         before { card.update(attempt: 2) }

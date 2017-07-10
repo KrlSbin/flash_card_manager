@@ -35,18 +35,22 @@ class Card < ActiveRecord::Base
 
     if translated_text == user_translation
       update_review_date
-      { success: true, typos_count: typos_count }
+      success = true
     else
       update_attempt_count
-      { success: false, typos_count: typos_count }
+      success = false
     end
+
+    { success: success, typos_count: typos_count }
   end
 
   def levenshtein_distance(user_translation)
     DamerauLevenshtein.distance(user_translation, translated_text)
   end
 
+  # todo move to service
   def self.mail_cards_to_review
+    # todo move to scope
     User.joins(:cards).where('review_date <= ?', Time.now).uniq.each do |user|
       CardMailer.cards_to_review(user).deliver_now
     end
@@ -72,9 +76,15 @@ class Card < ActiveRecord::Base
   def update_review_date
     update_attributes(attempt: 0,
                       review_date: new_review_date,
-                      box_number: [box_number + 1, 6].min)
+                      box_number: next_box_number)
   end
 
+  def next_box_number
+    return 6 if box_number == 6
+    box_number + 1
+  end
+
+  # move to service
   def update_attempt_count
     if attempt == 2
       update_attributes(review_date: Time.now + 12.hours,
@@ -86,12 +96,14 @@ class Card < ActiveRecord::Base
     false
   end
 
+
   def set_default_attributes
     self.review_date = Time.now
     self.box_number = 1
     self.attempt = 0
   end
 
+  # todo refactor to validation
   def original_and_translated_not_equal
     errors.add(:translated_text, 'could not be the same as original.') if translated_text == original_text
   end
