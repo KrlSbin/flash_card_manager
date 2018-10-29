@@ -33,7 +33,6 @@ end
 
 group :development do
   gem 'spring'
-  gem 'ruby-debug-ide'
 end
 
 group :test do
