@@ -28,7 +28,7 @@ group :development, :test do
   gem 'travis-lint'
   gem 'database_cleaner'
   gem 'annotate'
-  gem 'rubocop', '0.47.1'
+  gem 'rubocop', '0.49.0'
 end
 
 group :development do
