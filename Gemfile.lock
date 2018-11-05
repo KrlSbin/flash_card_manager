@@ -95,7 +95,7 @@ GEM
     json (1.8.6)
     jwt (1.5.1)
     libv8 (3.16.14.13)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
@@ -294,4 +294,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.16.2
+   1.17.1
