@@ -39,6 +39,7 @@ group :test do
   gem 'simplecov', require: true
   gem 'connection_pool'
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'poltergeist'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'factory_girl_rails'
