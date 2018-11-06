@@ -13,9 +13,9 @@ describe 'User Registration', type: :feature, js: true do
 
       it 'successful new user registration and autologin' do
         click_link 'Регистрация'
-        fill_in 'Email', with: user_email
-        fill_in 'Password', with: user_password
-        fill_in 'Password confirmation', with: user_password
+        fill_in 'user_email', with: user_email
+        fill_in 'user_password', with: user_password
+        fill_in 'user_password_confirmation', with: user_password
         expect { subject }.to change { User.count }.by(1)
         expect(page).to have_content 'Пользователь создан.'
       end
