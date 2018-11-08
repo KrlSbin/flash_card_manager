@@ -1,23 +1,51 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  login_and_pass_to_enter: 'Sign in'
+  cards_for_review: 'You have some cards for review here'
+  recall_some_cards: 'recall some cards'
+  not_allow_to_save_card: 'does not allow to save this card'
+  phrase_or_word: 'Phrase or word'
+  translation: 'Translation'
+  back: 'Back'
+  card_editing: 'Card editing'
+  review_date: 'Review date'
+  deck: 'Deck'
+  edit: 'Edit'
+  delete: 'Delete'
+  are_you_sure: 'Are you sure?'
+  new_card_adding: 'New card adding'
+  original_text: 'Original text'
+  add_new_one: 'Add new one'
+  not_allow_to_save_deck: 'does not allow to save this deck'
+  deck_name: 'Deck name'
+  deck_editing: 'Edit card deck'
+  add_card: 'Add card'
+  set_current: 'Set current'
+  new_deck: 'New deck'
+  edit_profile: 'Edit profile'
+  logout: 'Logout'
+  registration: 'Registration'
+  login: 'Login'
+  add_deck: 'Add deck'
+  all_user_cards: 'All user cards'
+  all_user_decks: 'All user decks'
+  main: 'Main'
+  flash_card_manager: 'Flash card manager'
+  hello: 'Hello'
+  check: 'Check'
+  no_new_cards: 'There are no new cards'
+  not_allow_to_save_user: 'does not allow to save user'
+  email: 'Email'
+  password: 'Password'
+  password_confirmation: 'Password confirmation'
+  show: 'Show'
+  user_editing: 'User editing'
+  new_user: 'New user'
+  typo: 'Typo! You entered %{translation}. Correct translation of %{original_text} is %{translated_text}!'
+  incorrect: 'Incorrect!'
+  correct: 'Correct!'
+  logged_in: 'You are logged in!'
+  logged_out: 'You are logged out!'
+  login_unsuccessful: 'Login is unsuccessful'
+  user_created: 'User is successfully created!'
+  profile_updated: 'Profile is successfully updated!'
+  user_deleted: 'User deleted!'

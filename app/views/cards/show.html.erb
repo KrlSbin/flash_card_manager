@@ -1,15 +1,15 @@
 <p>
-  <strong>Original text:</strong>
+  <strong><%= I18n.t('original_text') %>:</strong>
   <%= @card.original_text %>
 </p>
 <p>
-  <strong>Translated text:</strong>
+  <strong><%= I18n.t('translation') %>:</strong>
   <%= @card.translated_text %>
 </p>
 <p>
-  <strong>Review date:</strong>
+  <strong><%= I18n.t('review_date') %>:</strong>
   <%= @card.review_date.strftime('%d/%m/%Y') %>
 </p>
 
-<%= link_to "Назад", deck_cards_path %> |
-<%= link_to "Добавить ещё одну", new_deck_card_path %>
+<%= link_to I18n.t('back'), deck_cards_path %> |
+<%= link_to I18n.t('add_new_one'), new_deck_card_path %>

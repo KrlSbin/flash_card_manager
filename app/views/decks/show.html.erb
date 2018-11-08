@@ -1,6 +1,6 @@
 <p>
-  <strong>Card deck name:</strong>
+  <strong><%= I18n.t('deck_name') %></strong>
   <%= @deck.name %>
 </p>
 
-<%= link_to "Назад", decks_path %>
+<%= link_to I18n.t('back'), decks_path %>

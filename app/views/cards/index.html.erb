@@ -1,11 +1,11 @@
 <table class="table">
   <tr>
-    <th>Слово/Фраза</th>
-    <th>Перевод</th>
-    <th>Дата просмотра</th>
+    <th><%= I18n.t('phrase_or_word') %></th>
+    <th><%= I18n.t('translation') %></th>
+    <th><%= I18n.t('review_date') %></th>
     <th></th>
     <th></th>
-    <th>Колода</th>
+    <th><%= I18n.t('deck') %></th>
   </tr>
   <% current_user.decks.each do |deck| %>
     <% deck.cards.each do |card| %>
@@ -13,10 +13,10 @@
 	<td><%= card.original_text %></td>
 	<td><%= card.translated_text %></td>
 	<td><%= card.review_date.strftime('%d/%m/%Y') %></td>
-	<td><%= link_to "Редактировать", edit_deck_card_path(deck, card) %></td>
-  	<td><%= link_to "Удалить", deck_card_path(deck, card), 
+	<td><%= link_to I18n.t('edit'), edit_deck_card_path(deck, card) %></td>
+  	<td><%= link_to I18n.t('delete'), deck_card_path(deck, card),
 	                           method: :delete, 
-				   data: { confirm: "Вы уверены?" } %></td>
+				   data: { confirm: I18n.t('are_you_sure') } %></td>
 	<td><%= deck.name %></td>
       </tr>
     <% end %>

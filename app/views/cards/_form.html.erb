@@ -1,20 +1,20 @@
 <%= simple_form_for [deck, card], html: { multipart: true } do |f| %>
   <% if card.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(card.errors.count, "error") %> не позволяют сохранить эту карточку:</h2>
+      <h2><%= pluralize(card.errors.count, 'error') %> <%= I18n.t('not_allow_to_save_card') %>:</h2>
       <ul>
 	<% card.errors.full_messages.each do |msg| %>
 	  <li><%= msg %></li>
 	<% end %>
       </ul>
-    </div
+    </div>
   <% end %>
   <div class="field">
-    <%= f.label "Фраза или слово" %><br>
+    <%= f.label I18n.t('phrase_or_word') %><br>
     <%= f.input_field :original_text, size: 20 %>
   </div>
   <div class="field">
-    <%= f.label "Перевод" %><br>
+    <%= f.label I18n.t('translation') %><br>
     <%= f.input_field :translated_text, size: 20 %>
   </div>
   <div class="actions">
@@ -22,4 +22,4 @@
   </div>
 <% end %>
 <br>
-<%= link_to "Назад", decks_path %>
+<%= link_to I18n.t('back'), decks_path %>

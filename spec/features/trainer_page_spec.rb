@@ -19,9 +19,9 @@ describe 'Trainer page', type: :feature, js: true do
         let(:review_date) { Time.now + 3.days }
         it 'is not shown' do
           # check if correct the page is opened at all
-          expect(page).to have_content 'Flashcard manager.'
+          expect(page).to have_content 'Flashcard manager'
           expect(page).not_to have_content @card.original_text
-          expect(page).to have_content 'Новых карточек нет.'
+          expect(page).to have_content 'There are no new cards'
         end
       end
 
@@ -33,21 +33,21 @@ describe 'Trainer page', type: :feature, js: true do
         end
 
         it 'put typo in translation' do
-          fill_in 'Перевод:', with: 'мор'
-          click_button 'Проверить'
-          expect(page).to have_content 'Очепятка!'
+          fill_in 'Translation:', with: 'мор'
+          click_button 'Check'
+          expect(page).to have_content 'Typo!'
         end
 
         it 'show unreviewed card from current deck and put wrong translation' do
-          fill_in 'Перевод:', with: 'моречко'
-          click_button 'Проверить'
-          expect(page).to have_content 'Неправильно!'
+          fill_in 'Translation:', with: 'моречко'
+          click_button 'Check'
+          expect(page).to have_content 'Incorrect!'
         end
 
         it 'show unreviewed card from current deck and get correct translation' do
-          fill_in 'Перевод:', with: 'море'
-          click_button 'Проверить'
-          expect(page).to have_content 'Правильно!'
+          fill_in 'Translation:', with: 'море'
+          click_button 'Check'
+          expect(page).to have_content 'Correct!'
         end
       end
     end

@@ -4,12 +4,12 @@
     <%= @card.original_text %>
     <%= simple_form_for @card, url: trainer_path, method: :put do %>
       <%= hidden_field_tag(:card_id, @card.id) %>
-      <%= label_tag(:translated_text, "Перевод:") %>
+      <%= label_tag(:translated_text, "#{I18n.t('translation')}:") %>
       <%= text_field_tag(:translated_text) %>
-      <%= submit_tag("Проверить") %>
+      <%= submit_tag(I18n.t('check')) %>
     <% end %>
   <% else %>
-    <%= "Новых карточек нет." %>
+    <%= I18n.t('no_new_cards') %>
   <% end %>
 </p>
 

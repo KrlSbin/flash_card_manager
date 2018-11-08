@@ -12,9 +12,9 @@ describe 'Authentication procedure', type: :feature, js: true do
       end
 
       it 'successful login/logout to portal' do
-        expect(page).to have_content 'Вы залогинены'
-        click_link 'Выйти'
-        expect(page).to have_content 'Вы вышли!'
+        expect(page).to have_content 'You are logged in!'
+        click_link 'Logout'
+        expect(page).to have_content 'You are logged out!'
       end
     end
 
@@ -24,7 +24,7 @@ describe 'Authentication procedure', type: :feature, js: true do
       end
 
       it 'unsuccessful login to portal with wrong password' do
-        expect(page).to have_content 'Логин неудался'
+        expect(page).to have_content 'Login is unsuccessful'
       end
     end
   end

@@ -1,7 +1,7 @@
 <%= simple_form_for deck do |f| %>
   <% if deck.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(deck.errors.count, "error") %> запрещают сохранить эту колоду:</h2>
+      <h2><%= pluralize(deck.errors.count, "error") %> <%= I18n.t('not_allow_to_save_deck') %>::</h2>
 
       <ul>
       <% deck.errors.full_messages.each do |message| %>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Имя колоды" %><br>
+    <%= f.label I18n.t('deck_name') %><br>
     <%= f.input_field :name, size: 20 %>
   </div>
   <div class="actions">
@@ -20,4 +20,4 @@
   </div>
 <% end %>
 <br>
-<%= link_to "Назад", decks_path %>
+<%= link_to I18n.t('back'), decks_path %>
