@@ -12,22 +12,22 @@ describe 'User Registration', type: :feature, js: true do
       subject { click_button 'Create User' }
 
       it 'successful new user registration and autologin' do
-        click_link 'Регистрация'
+        click_link 'Registration'
         fill_in 'user_email', with: user_email
         fill_in 'user_password', with: user_password
         fill_in 'user_password_confirmation', with: user_password
         expect { subject }.to change { User.count }.by(1)
-        expect(page).to have_content 'Пользователь создан.'
+        expect(page).to have_content 'User is successfully created!'
       end
     end
 
     context 'unsuccessful create' do
       context 'with short password' do
         it 'unsuccessful new user registration with short password' do
-          click_link 'Регистрация'
-          fill_in 'Email', with: user_email
-          fill_in 'Password', with: short_password
-          fill_in 'Password confirmation', with: short_password
+          click_link 'Registration'
+          fill_in 'user_email', with: user_email
+          fill_in 'user_password', with: short_password
+          fill_in 'user_password_confirmation', with: short_password
           click_button 'Create User'
           expect(page).to have_content 'Password is too short'
         end
@@ -41,10 +41,10 @@ describe 'User Registration', type: :feature, js: true do
         end
 
         it 'unsuccessful new user registration with already used email' do
-          click_link 'Регистрация'
-          fill_in 'Email', with: user_email
-          fill_in 'Password', with: user_password
-          fill_in 'Password confirmation', with: user_password
+          click_link 'Registration'
+          fill_in 'user_email', with: user_email
+          fill_in 'user_password', with: user_password
+          fill_in 'user_password_confirmation', with: user_password
           click_button 'Create User'
           expect(page).to have_content 'Email has already been taken'
         end
@@ -52,9 +52,9 @@ describe 'User Registration', type: :feature, js: true do
 
       context 'when password field empty' do
         it 'unsuccessful new user registration with empty password' do
-          click_link 'Регистрация'
-          fill_in 'Email', with: '1234'
-          fill_in 'Password confirmation', with: '1234'
+          click_link 'Registration'
+          fill_in 'user_email', with: '1234'
+          fill_in 'user_password_confirmation', with: '1234'
           click_button 'Create User'
           expect(page).to have_content 'Password is too short'
         end
@@ -65,9 +65,9 @@ describe 'User Registration', type: :feature, js: true do
 
         context 'empty password confimation' do
           it 'Fail new user registration with empty password confirmation' do
-            click_link 'Регистрация'
-            fill_in 'Email', with: '1234'
-            fill_in 'Password', with: '1234'
+            click_link 'Registration'
+            fill_in 'user_email', with: '1234'
+            fill_in 'user_password', with: '1234'
             click_button 'Create User'
             expect(page).to have_content validation_message
           end
@@ -75,10 +75,10 @@ describe 'User Registration', type: :feature, js: true do
 
         context 'wrong password confirmation' do
           it 'Failed new user registration with wrong password confirmation' do
-            click_link 'Регистрация'
-            fill_in 'Email', with: '1234'
-            fill_in 'Password', with: '1234'
-            fill_in 'Password confirmation', with: '12345'
+            click_link 'Registration'
+            fill_in 'user_email', with: '1234'
+            fill_in 'user_password', with: '1234'
+            fill_in 'user_password_confirmation', with: '12345'
             click_button 'Create User'
             expect(page).to have_content validation_message
           end

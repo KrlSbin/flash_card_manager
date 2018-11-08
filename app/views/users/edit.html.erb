@@ -1,6 +1,6 @@
-<h1>Editing user</h1>
+<h1><%= I18n.t('user_editing') %></h1>
 
 <%= render "form", user: current_user %>
 
-<%= link_to "Показать", current_user %> |
-<%= link_to "Назад", root_path %>
+<%= link_to I18n.t('show'), current_user %> |
+<%= link_to I18n.t('back'), root_path %>

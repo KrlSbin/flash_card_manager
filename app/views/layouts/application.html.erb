@@ -9,13 +9,12 @@
 <body>
   <div id="nav">
     <% if current_user %>
-      <%= link_to "Редактировать профиль", edit_user_path(current_user) %> |
-      <%= link_to "Выйти", logout_path, method: :post %> |
+      <%= link_to I18n.t('edit_profile'), edit_user_path(current_user) %> |
+      <%= link_to I18n.t('logout'), logout_path, method: :post %> |
       <%= current_user.email %>
     <% else %>
-      <%= link_to "Регистрация", new_user_path %> |
-      <%= link_to "Войти", login_path %> |
-      <%= link_to "Войти через vk.com", auth_at_provider_path(provider: :vk) %>
+      <%= link_to I18n.t('registration'), new_user_path %> |
+      <%= link_to I18n.t('login'), login_path %>
     <% end %>
   </div>
   <div>
@@ -33,29 +32,29 @@
 	<% if current_user %>
 	  <% if current_user.decks.empty? %>
 	    <li>
-	      <%= link_to "Добавить колоду", new_deck_path %>
+	      <%= link_to I18n.t('add_deck'), new_deck_path %>
 	    </li>
 	  <% else %>
 	    <li>
-	      <%= link_to "Добавить колоду", new_deck_path %>
+	      <%= link_to I18n.t('add_deck'), new_deck_path %>
 	    </li>
 	    <li>
-	      <%= link_to "Все карточки пользователя", cards_path %>
+	      <%= link_to I18n.t('all_user_cards'), cards_path %>
 	    </li>
 	    <li>
-	      <%= link_to "Все колоды пользователя", decks_path %>
+	      <%= link_to I18n.t('all_user_decks'), decks_path %>
 	    </li>
 	  <% end %>
 	<% end %>
 	<li>
-  	  <%= link_to "Главная", root_path %>
+  	  <%= link_to I18n.t('main'), root_path %>
 	</li>
       </ul>
     </header>
 
     <section>
       <p>
-        Flash card manager.
+        <%= I18n.t('flash_card_manager') %>
       </p>
     </section>
     

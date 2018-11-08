@@ -1,6 +1,6 @@
 <table class="table">
   <tr>
-    <th>Имя колоды</th>
+    <th><%= I18n.t('deck_name') %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,10 +9,10 @@
   <% current_user.decks.each do |deck| %>
     <tr>
       <td><%= deck.name %></td>
-      <td><%= link_to "Редактировать", edit_deck_path(deck) %></td>
-      <td><%= link_to "Удалить", deck_path(deck), method: :delete, data: { confirm: "Вы уверены?" } %></td>
-      <td><%= link_to "Добавить карту", new_deck_card_path(deck) %></td>
-      <td><%= link_to "Сделать текущей", set_current_deck_path(deck_id: deck.id) %></td>
+      <td><%= link_to I18n.t('edit'), edit_deck_path(deck) %></td>
+      <td><%= link_to I18n.t('delete'), deck_path(deck), method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
+      <td><%= link_to I18n.t('add_card'), new_deck_card_path(deck) %></td>
+      <td><%= link_to I18n.t('set_current'), set_current_deck_path(deck_id: deck.id) %></td>
     </tr>
   <% end %>
 </table>

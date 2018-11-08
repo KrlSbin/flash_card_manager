@@ -14,14 +14,14 @@ class TrainerController < ApplicationController
     check_result = @card.check_translation(params[:translated_text])
 
     if check_result[:success]
-      flash[:notice] = 'Правильно!'
+      flash[:notice] = I18n.t('correct')
     elsif check_result[:typos_count] == 1
-      flash[:notice] = "Очепятка! \
-                        Вы ввели #{params[:translated_text]}. \
-                        Правильный перевод \"#{@card.original_text}\" \
-                        - \"#{@card.translated_text}\"!"
+      flash[:notice] = I18n.t('typo',
+                              translation: params[:translated_text],
+                              original_text: @card.original_text,
+                              translated_text: @card.translated_text)
     else
-      flash[:notice] = 'Неправильно!'
+      flash[:notice] = I18n.t('incorrect')
     end
     redirect_to root_path
   end
