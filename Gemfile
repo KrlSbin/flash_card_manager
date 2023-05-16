@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2'
+ruby '3.2.2'
+
+gem 'bundler', '2.4.13'
+
+gem 'rails', '7.0.4.3'
 gem 'pg'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -12,7 +16,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'execjs'
-gem 'therubyracer'
+# gem 'therubyracer'
 gem 'simple_form'
 gem 'sorcery', '~> 0.9.0'
 gem 'figaro'
