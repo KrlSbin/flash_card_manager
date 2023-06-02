@@ -29,7 +29,6 @@ group :production do
 end
 
 group :development, :test do
-  gem 'travis-lint'
   gem 'database_cleaner'
   gem 'annotate'
   gem 'rubocop', '0.49.0'
@@ -51,5 +50,3 @@ group :test do
   gem 'shoulda-matchers'
   gem 'selenium-webdriver'
 end
-
-gem 'codeclimate-test-reporter', group: :test, require: nil

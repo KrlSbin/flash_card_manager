@@ -88,8 +88,6 @@ GEM
       launchy
     chronic (0.10.2)
     cliver (0.3.2)
-    codeclimate-test-reporter (1.0.9)
-      simplecov (<= 0.13)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -303,8 +301,6 @@ GEM
     thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
-    travis-lint (2.0.0)
-      json
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -332,7 +328,6 @@ DEPENDENCIES
   bundler (= 2.4.13)
   capybara
   capybara-screenshot
-  codeclimate-test-reporter
   coffee-rails
   connection_pool
   damerau-levenshtein (~> 1.0.3)
@@ -358,7 +353,6 @@ DEPENDENCIES
   simplecov
   sorcery (~> 0.9.0)
   spring
-  travis-lint
   turbolinks
   uglifier (>= 1.3.0)
   whenever
