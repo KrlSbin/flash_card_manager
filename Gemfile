@@ -1,23 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2'
-gem 'pg'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
+gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'coffee-rails', '~> 4.0.0'
-
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
+gem 'damerau-levenshtein', '~> 1.0.3'
 gem 'execjs'
-gem 'therubyracer'
+gem 'figaro'
+gem 'jbuilder', '~> 2.0'
+gem 'jquery-rails'
+gem 'pg'
+gem 'posix-spawn'
+gem 'rails', '~> 4.2'
+gem 'sass-rails', '~> 4.0.3'
+gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'simple_form'
 gem 'sorcery', '~> 0.9.0'
-gem 'figaro'
-gem 'posix-spawn'
-gem 'damerau-levenshtein', '~> 1.0.3'
+gem 'therubyracer'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 
 group :production do
@@ -25,10 +24,10 @@ group :production do
 end
 
 group :development, :test do
-  gem 'travis-lint'
-  gem 'database_cleaner'
   gem 'annotate'
+  gem 'database_cleaner'
   gem 'rubocop', '0.49.0'
+  gem 'travis-lint'
 end
 
 group :development do
@@ -36,16 +35,14 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov', require: true
-  gem 'connection_pool'
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'poltergeist'
-  gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'connection_pool'
   gem 'factory_girl_rails'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'poltergeist'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: true
 end
-
-gem 'codeclimate-test-reporter', group: :test, require: nil
