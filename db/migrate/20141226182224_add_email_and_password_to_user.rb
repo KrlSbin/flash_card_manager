@@ -1,4 +1,4 @@
-class AddEmailAndPasswordToUser < ActiveRecord::Migration
+class AddEmailAndPasswordToUser < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
       t.text :email

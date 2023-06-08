@@ -35,7 +35,7 @@ describe 'User Registration', type: :feature, js: true do
 
       context 'when user already created' do
         let!(:user) do
-          FactoryGirl.create(:user, email: user_email,
+          FactoryBot.create(:user, email: user_email,
                              password: user_password,
                              password_confirmation: user_password)
         end

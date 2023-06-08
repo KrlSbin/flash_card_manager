@@ -4,7 +4,7 @@ describe CardMailer do
   subject { ActionMailer::Base.deliveries }
 
   let(:password) { 'password' }
-  let!(:user) { FactoryGirl.create(:user, password: password, password_confirmation: password) }
+  let!(:user) { FactoryBot.create(:user, password: password, password_confirmation: password) }
 
   before do
     user.cards.create(original_text: 'Word', translated_text: 'Слово',

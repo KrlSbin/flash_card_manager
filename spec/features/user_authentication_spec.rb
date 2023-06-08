@@ -4,7 +4,7 @@ describe 'Authentication procedure', type: :feature, js: true do
   let(:user_password) { 'password' }
 
   context 'existing user' do
-    let!(:user) { FactoryGirl.create(:user, password: user_password, password_confirmation: user_password) }
+    let!(:user) { FactoryBot.create(:user, password: user_password, password_confirmation: user_password) }
 
     context 'correct credentials' do
       include_context :login_user do

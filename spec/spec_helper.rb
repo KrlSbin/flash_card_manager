@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'capybara/rspec'
-require 'factory_girl_rails'
+require 'factory_bot'
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
 # Capybara.javascript_driver = :selenium
@@ -24,7 +24,7 @@ Capybara.javascript_driver = :poltergeist
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
     DatabaseCleaner[:active_record].strategy = :transaction

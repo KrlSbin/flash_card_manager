@@ -27,7 +27,7 @@ describe Card, type: :model do
   let(:translated_text) { 'Слово' }
 
   describe 'validations' do
-    before { @card = FactoryGirl.build(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
+    before { @card = FactoryBot.build(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
 
     shared_examples :valid do
       it 'is valid' do
@@ -55,7 +55,7 @@ describe Card, type: :model do
   end
 
   describe '#check_translation' do
-    let!(:card) { FactoryGirl.create(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
+    let!(:card) { FactoryBot.create(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
 
     let!(:original_review_date) { card.review_date }
 
@@ -180,7 +180,7 @@ describe Card, type: :model do
   describe '.mail_cards_to_review' do
     include_context :user
 
-    before { @card = FactoryGirl.create(:card, :with_deck, original_text: original_text, translated_text: translated_text, user: @user) }
+    before { @card = FactoryBot.create(:card, :with_deck, original_text: original_text, translated_text: translated_text, user: @user) }
 
     subject { Card.mail_cards_to_review }
 

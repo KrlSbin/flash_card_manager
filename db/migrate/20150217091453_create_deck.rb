@@ -1,4 +1,4 @@
-class CreateDeck < ActiveRecord::Migration
+class CreateDeck < ActiveRecord::Migration[7.0]
   def change
     create_table :decks do |t|
       t.string :name

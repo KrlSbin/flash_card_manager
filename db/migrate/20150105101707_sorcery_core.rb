@@ -1,4 +1,4 @@
-class SorceryCore < ActiveRecord::Migration
+class SorceryCore < ActiveRecord::Migration[7.0]
   def change
     add_column :users, :salt, :string
     change_column :users, :email, :string
