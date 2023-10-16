@@ -20,8 +20,8 @@
 #
 
 class Card < ActiveRecord::Base
-  belongs_to :deck, class_name: Deck, foreign_key: :deck_id
-  belongs_to :user, class_name: User, foreign_key: :user_id
+  belongs_to :deck, class_name: 'Deck', foreign_key: :deck_id
+  belongs_to :user, class_name: 'User', foreign_key: :user_id
 
   scope :for_review, -> { where('review_date <= ?', Time.now).order('RANDOM()') }
 
@@ -74,9 +74,9 @@ class Card < ActiveRecord::Base
   end
 
   def update_review_date
-    update_attributes(attempt: 0,
-                      review_date: new_review_date,
-                      box_number: next_box_number)
+    update(attempt: 0,
+           review_date: new_review_date,
+           box_number: next_box_number)
   end
 
   def next_box_number
@@ -87,7 +87,7 @@ class Card < ActiveRecord::Base
   # move to service
   def update_attempt_count
     if attempt == 2
-      update_attributes(review_date: Time.now + 12.hours,
+      update(review_date: Time.now + 12.hours,
                         box_number: 1,
                         attempt: 0)
     else

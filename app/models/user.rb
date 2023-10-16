@@ -34,6 +34,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   def set_current_deck(deck_id)
-    update_attributes(current_deck_id: deck_id)
+    update(current_deck_id: deck_id)
   end
 end

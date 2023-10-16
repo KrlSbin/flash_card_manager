@@ -30,7 +30,7 @@ describe CardMailer do
     end
 
     it 'renders the sender email' do
-      expect(subject.first.from).to eq([ENV['MAILER_ADDR']])
+      expect(subject.first.from).to eq(['test@test.mail'])
     end
   end
 end

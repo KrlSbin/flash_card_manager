@@ -15,9 +15,10 @@ gem 'pg'
 gem 'posix-spawn'
 gem 'rails'
 gem 'sass-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '2.6.1', group: :doc
+gem 'json', '2.6.3'
 gem 'simple_form'
-gem 'sorcery', '~> 0.9.0'
+gem 'sorcery', '0.16.5'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
@@ -35,6 +36,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'puma', '6.4.0'
   gem 'spring'
 end
 
@@ -42,7 +44,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'connection_pool'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'poltergeist'
   gem 'selenium-webdriver'

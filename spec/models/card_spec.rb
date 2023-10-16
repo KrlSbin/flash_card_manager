@@ -85,7 +85,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 1' do
-        before { card.update_attributes(box_number: 1) }
+        before { card.update(box_number: 1) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 12.hours }
@@ -95,7 +95,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 2' do
-        before { card.update_attributes(box_number: 2) }
+        before { card.update(box_number: 2) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 3.days }
@@ -105,7 +105,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 3' do
-        before { card.update_attributes(box_number: 3) }
+        before { card.update(box_number: 3) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 7.days }
@@ -115,7 +115,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 4' do
-        before { card.update_attributes(box_number: 4) }
+        before { card.update(box_number: 4) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 14.days }
@@ -125,7 +125,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 5' do
-        before { card.update_attributes(box_number: 5) }
+        before { card.update(box_number: 5) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 1.month }
@@ -135,7 +135,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 6' do
-        before { card.update_attributes(box_number: 6) }
+        before { card.update(box_number: 6) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 1.month }
