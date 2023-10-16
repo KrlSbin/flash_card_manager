@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'capybara/rspec'
-require 'factory_girl_rails'
+require 'factory_bot'
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
 # Capybara.javascript_driver = :selenium
@@ -24,7 +24,7 @@ Capybara.javascript_driver = :poltergeist
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
     DatabaseCleaner[:active_record].strategy = :transaction
@@ -62,8 +62,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-# The settings below are suggested to provide a good initial experience
-# with RSpec, but feel free to customize to your heart's content.
+  # The settings below are suggested to provide a good initial experience
+  # with RSpec, but feel free to customize to your heart's content.
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
   # `:focus` metadata. When nothing is tagged with `:focus`, all examples

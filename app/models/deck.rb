@@ -16,6 +16,6 @@
 class Deck < ActiveRecord::Base
   validates_presence_of :name
 
-  has_many :cards, class_name: Card, foreign_key: :deck_id, dependent: :destroy
+  has_many :cards, class_name: 'Card', foreign_key: :deck_id, dependent: :destroy
   belongs_to :user
 end

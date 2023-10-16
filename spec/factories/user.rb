@@ -1,7 +1,9 @@
-FactoryGirl.define do
+# frozen_string_literal: true
+
+FactoryBot.define do
   factory :user, class: User do
-    email 'kirill@mail.ru'
-    password 'password'
-    password_confirmation 'password'
+    email { 'kirill@gmail.com' }
+    password { 'password' }
+    password_confirmation { 'password' }
   end
 end

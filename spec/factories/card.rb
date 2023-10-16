@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: cards
@@ -14,11 +16,11 @@
 #  attempt                 :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :card, class: Card do
-    original_text 'sea'
-    translated_text 'море'
-    review_date nil
+    original_text { 'sea' }
+    translated_text { 'море' }
+    review_date { nil }
 
     trait :with_deck do
       after(:build) do |record|

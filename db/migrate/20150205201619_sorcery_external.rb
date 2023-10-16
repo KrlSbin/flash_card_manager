@@ -1,4 +1,5 @@
-class SorceryExternal < ActiveRecord::Migration
+# frozen_string_literal: true
+class SorceryExternal < ActiveRecord::Migration[7.0]
   def change
     create_table :authentications do |t|
       t.integer :user_id, null: false

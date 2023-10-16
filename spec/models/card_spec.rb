@@ -27,7 +27,7 @@ describe Card, type: :model do
   let(:translated_text) { 'Слово' }
 
   describe 'validations' do
-    before { @card = FactoryGirl.build(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
+    before { @card = FactoryBot.build(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
 
     shared_examples :valid do
       it 'is valid' do
@@ -55,7 +55,7 @@ describe Card, type: :model do
   end
 
   describe '#check_translation' do
-    let!(:card) { FactoryGirl.create(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
+    let!(:card) { FactoryBot.create(:card, :with_deck, original_text: original_text, translated_text: translated_text) }
 
     let!(:original_review_date) { card.review_date }
 
@@ -85,7 +85,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 1' do
-        before { card.update_attributes(box_number: 1) }
+        before { card.update(box_number: 1) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 12.hours }
@@ -95,7 +95,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 2' do
-        before { card.update_attributes(box_number: 2) }
+        before { card.update(box_number: 2) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 3.days }
@@ -105,7 +105,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 3' do
-        before { card.update_attributes(box_number: 3) }
+        before { card.update(box_number: 3) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 7.days }
@@ -115,7 +115,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 4' do
-        before { card.update_attributes(box_number: 4) }
+        before { card.update(box_number: 4) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 14.days }
@@ -125,7 +125,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 5' do
-        before { card.update_attributes(box_number: 5) }
+        before { card.update(box_number: 5) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 1.month }
@@ -135,7 +135,7 @@ describe Card, type: :model do
       end
 
       context 'when card in box 6' do
-        before { card.update_attributes(box_number: 6) }
+        before { card.update(box_number: 6) }
 
         it_behaves_like :update_review_date do
           let(:time_offset) { 1.month }
@@ -180,7 +180,7 @@ describe Card, type: :model do
   describe '.mail_cards_to_review' do
     include_context :user
 
-    before { @card = FactoryGirl.create(:card, :with_deck, original_text: original_text, translated_text: translated_text, user: @user) }
+    before { @card = FactoryBot.create(:card, :with_deck, original_text: original_text, translated_text: translated_text, user: @user) }
 
     subject { Card.mail_cards_to_review }
 
