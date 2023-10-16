@@ -60,16 +60,16 @@ class Card < ActiveRecord::Base
 
   def new_review_date
     case box_number
-      when 1
-        Time.now + 12.hours
-      when 2
-        Time.now + 3.days
-      when 3
-        Time.now + 7.days
-      when 4
-        Time.now + 14.days
-      else
-        Time.now + 1.month
+    when 1
+      Time.now + 12.hours
+    when 2
+      Time.now + 3.days
+    when 3
+      Time.now + 7.days
+    when 4
+      Time.now + 14.days
+    else
+      Time.now + 1.month
     end
   end
 
@@ -88,14 +88,13 @@ class Card < ActiveRecord::Base
   def update_attempt_count
     if attempt == 2
       update(review_date: Time.now + 12.hours,
-                        box_number: 1,
-                        attempt: 0)
+             box_number: 1,
+             attempt: 0)
     else
       increment!(:attempt)
     end
     false
   end
-
 
   def set_default_attributes
     self.review_date = Time.now
