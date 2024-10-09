@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe 'Trainer page', type: :feature, js: true do
-  before { @user = FactoryGirl.create(:user, password: 'password', password_confirmation: 'password') }
+  before { @user = FactoryBot.create(:user, password: 'password', password_confirmation: 'password') }
 
   context 'cards visibility' do
 
     context 'simple check' do
       before do
-        @card = FactoryGirl.create(:card, :with_deck, user: @user)
+        @card = FactoryBot.create(:card, :with_deck, user: @user)
         @card.update(review_date: review_date)
         @user.decks << @card.deck
         @user.update(current_deck_id: @card.deck.id)

@@ -1,20 +1,26 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
+ruby '3.2.2'
+
+gem 'bundler', '2.4.13'
+
 gem 'codeclimate-test-reporter', group: :test, require: nil
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'damerau-levenshtein', '~> 1.0.3'
 gem 'execjs'
 gem 'figaro'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'json', '2.6.3'
 gem 'pg'
 gem 'posix-spawn'
-gem 'rails', '~> 4.2'
-gem 'sass-rails', '~> 4.0.3'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'rails'
+gem 'sass-rails'
+gem 'sdoc', '2.6.1', group: :doc
 gem 'simple_form'
-gem 'sorcery', '~> 0.9.0'
-gem 'therubyracer'
+gem 'sorcery', '0.16.5'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
@@ -25,12 +31,15 @@ end
 
 group :development, :test do
   gem 'annotate'
+  gem 'byebug', '~> 11.1', '>= 11.1.3'
   gem 'database_cleaner'
-  gem 'rubocop', '0.49.0'
+  gem 'rspec-rails'
+  gem 'rubocop'
   gem 'travis-lint'
 end
 
 group :development do
+  gem 'puma', '6.4.0'
   gem 'spring'
 end
 
@@ -38,10 +47,9 @@ group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'connection_pool'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'poltergeist'
-  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: true

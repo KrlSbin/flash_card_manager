@@ -29,3 +29,5 @@
 /coverage
 .ruby-version
 .idea/
+
+.byebug_history

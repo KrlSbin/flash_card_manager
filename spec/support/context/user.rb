@@ -1,3 +1,3 @@
 shared_context :user do
-  before { @user = FactoryGirl.create(:user) }
+  before { @user = FactoryBot.create(:user) }
 end
