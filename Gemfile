@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 ruby '3.2.2'
@@ -9,14 +10,15 @@ gem 'coffee-rails'
 gem 'damerau-levenshtein', '~> 1.0.3'
 gem 'execjs'
 gem 'figaro'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'json', '2.6.3'
 gem 'pg'
 gem 'posix-spawn'
 gem 'rails'
 gem 'sass-rails'
 gem 'sdoc', '2.6.1', group: :doc
-gem 'json', '2.6.3'
 gem 'simple_form'
 gem 'sorcery', '0.16.5'
 gem 'turbolinks'
@@ -29,6 +31,7 @@ end
 
 group :development, :test do
   gem 'annotate'
+  gem 'byebug', '~> 11.1', '>= 11.1.3'
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'rubocop'
